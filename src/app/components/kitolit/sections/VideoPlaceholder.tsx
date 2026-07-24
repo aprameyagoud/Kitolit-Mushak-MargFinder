@@ -1,0 +1,25 @@
+import { Mandala } from "../decor";
+
+export function VideoPlaceholder() {
+  return (
+    <section className="relative mx-auto max-w-4xl px-5 pb-16 sm:pb-24">
+      <figure className="relative aspect-video w-full overflow-hidden rounded-[2rem] bg-slate-900 shadow-2xl sm:rounded-[2.5rem]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--brand-blue)] to-[#1a4078] opacity-80" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath d=%22M20 20.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z%22 fill=%22%23FFF%22 fill-opacity=%220.1%22 fill-rule=%22evenodd%22/%3E%3C/svg%3E')] opacity-30 mix-blend-overlay" />
+
+        <Mandala spin className="absolute -left-32 -top-32 w-[600px] text-white opacity-5" />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white">
+          <div className="relative grid size-20 place-items-center rounded-full bg-white/20 text-white backdrop-blur-md sm:size-24" aria-hidden="true">
+            <span className="absolute inset-0 rounded-full bg-white/20 opacity-50 motion-safe:animate-ping" />
+            <svg className="size-12 opacity-90 sm:size-14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+          <p className="mt-6 font-[family:var(--font-display)] text-xl font-bold tracking-wide sm:text-2xl">See the magic in action</p>
+          <p className="mt-2 text-sm text-white/70 sm:text-base">Promo video placeholder</p>
+        </div>
+      </figure>
+    </section>
+  );
+}
