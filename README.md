@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
   # Mushik Marg
 
@@ -9,3 +10,6 @@
 
   Run `npm run dev` to start the development server.
   
+=======
+# Kitolit-Mushak-MargFinder
+>>>>>>> a055ec07aa3eddeea9860e154fbdb5d8d94e703d
