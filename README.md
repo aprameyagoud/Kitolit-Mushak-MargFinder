@@ -1,15 +1,196 @@
-<<<<<<< HEAD
+# 🪔 Eco Tech Ganesha Workshop Landing Page
 
-  # Mushik Marg
+A premium, responsive React landing page built for **Kitolit Robotics & AI** to promote the **Eco Tech Ganesha Workshop**.
 
-  This is a code bundle for Mushik Marg. The original project is available at https://www.figma.com/design/oIUrkRewVqOBvSaU6JxRkS/Mushik-Marg.
+The website is designed to convert Meta/Instagram ad traffic into workshop registrations by providing an engaging, festive, and trust-building experience for parents.
 
-  ## Running the code
+---
 
-  Run `npm i` to install the dependencies.
+## ✨ Features
 
-  Run `npm run dev` to start the development server.
-  
-=======
-# Kitolit-Mushak-MargFinder
->>>>>>> a055ec07aa3eddeea9860e154fbdb5d8d94e703d
+- 🎨 Modern festive UI with premium aesthetics
+- 📱 Fully responsive (Mobile, Tablet & Desktop)
+- ⚡ Built with React + Vite
+- 💨 Tailwind CSS styling
+- 🎭 Smooth animations and micro-interactions
+- 🖼️ Optimized image loading
+- 🎯 Conversion-focused landing page
+- ♿ Accessibility-conscious design
+- 🚀 Optimized for performance and SEO
+
+---
+
+## 🧩 Sections
+
+- Hero
+- Workshop Overview
+- Why Choose Eco Tech Ganesha
+- Learning Outcomes
+- Workshop Highlights
+- Gallery
+- Testimonials
+- FAQ
+- Pricing
+- Registration CTA
+- Footer
+
+---
+
+## 🛠 Tech Stack
+
+- React
+- Vite
+- Tailwind CSS
+- JavaScript / TypeScript *(depending on project)*
+- Framer Motion *(if used)*
+- React Icons
+- Lucide Icons *(if used)*
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+│
+├── components/
+├── sections/
+├── assets/
+├── hooks/
+├── utils/
+├── App.jsx
+└── main.jsx
+
+public/
+└── images/
+```
+
+---
+
+## 🚀 Getting Started
+
+Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+Create a production build
+
+```bash
+npm run build
+```
+
+Preview production build
+
+```bash
+npm run preview
+```
+
+---
+
+## 📱 Responsive Design
+
+Optimized for:
+
+- 320px
+- 360px
+- 390px
+- 430px
+- Tablets
+- Desktop
+- Large screens
+
+---
+
+## 🎯 Design Goals
+
+- Festive and premium appearance
+- High trust for parents
+- Clear visual hierarchy
+- Fast loading
+- Excellent mobile experience
+- High conversion rate
+- Accessibility and usability
+
+---
+
+## 📸 Assets
+
+All images used in the project belong to their respective owners or are used for development purposes.
+
+Logo assets are stored under:
+
+```
+public/images/logos/
+```
+
+Gallery images:
+
+```
+public/images/
+```
+
+---
+
+## 🌐 Deployment
+
+Production build
+
+```bash
+npm run build
+```
+
+Deploy the generated `dist/` folder to your preferred hosting provider.
+
+Recommended:
+
+- Hostinger
+- Vercel
+- Netlify
+
+---
+
+## 🔮 Future Improvements
+
+- WooCommerce integration
+- Razorpay payment gateway
+- Registration forms
+- Meta Pixel
+- Google Analytics 4
+- Facebook Conversion API
+- Dynamic workshop dates
+- Admin dashboard
+
+---
+
+## 👨‍💻 Development Notes
+
+This project follows a component-based architecture with emphasis on:
+
+- Reusable components
+- Responsive layouts
+- Performance optimization
+- Accessibility
+- Clean code
+- SEO-friendly structure
+
+---
+
+## 📄 License
+
+Private project developed for **Kitolit Robotics & AI**.
+
+Unauthorized distribution or commercial reuse is prohibited.
