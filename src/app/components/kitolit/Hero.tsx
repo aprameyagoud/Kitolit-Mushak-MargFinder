@@ -3,6 +3,7 @@ import { BookButton } from "./BookCTA";
 import { FeatureChips } from "./FeatureChips";
 import { Mandala, GaneshaMark, MushakMark } from "./decor";
 import { workshopHighlights } from "./workshopHighlights";
+import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -13,13 +14,15 @@ export function Hero() {
       <Mandala spin className="pointer-events-none absolute -right-24 -top-24 w-[420px] text-[color:var(--brand-blue)] opacity-[0.12]" />
       <Mandala className="pointer-events-none absolute -left-28 top-40 w-[300px] text-[color:var(--festive-orange)] opacity-[0.12]" />
 
-      <div className="mx-auto max-w-6xl px-4 pt-10 pb-12 sm:px-5 sm:pt-16 sm:pb-16">
+      <div className="mx-auto max-w-6xl px-4 pt-8 pb-12 sm:px-5 sm:pt-12 sm:pb-16">
         {/* brand row */}
-        <div className="flex items-center gap-2">
-          <span className="text-2xl font-[family:var(--font-display)] font-bold text-[color:var(--brand-red)]">
-            Kito<span className="text-[color:var(--brand-blue)]">lit</span>
-          </span>
-          <span className="ml-2 rounded-full bg-white/70 px-3 py-1 text-[11px] font-medium text-[color:var(--muted-foreground)] backdrop-blur sm:text-xs">
+        <div className="flex items-center gap-3">
+          <ImageWithFallback
+            src="/images/logos/kitolit_logo_horizontal.png"
+            alt="Kitolit Logo"
+            className="h-10 sm:h-12 w-auto object-contain drop-shadow-sm"
+          />
+          <span className="rounded-full bg-white/80 border border-white/60 px-3 py-1 text-[11px] font-semibold text-[color:var(--muted-foreground)] backdrop-blur-md shadow-xs sm:text-xs">
             Festive Maker Series
           </span>
         </div>

@@ -2,6 +2,7 @@ import { BookButton } from "./BookCTA";
 import { FeatureChips } from "./FeatureChips";
 import { Mandala, GaneshaMark, MushakMark } from "./decor";
 import { workshopHighlights } from "./workshopHighlights";
+import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function FinalCTA() {
   return (
@@ -38,9 +39,18 @@ export function FinalCTA() {
           iconClassName="size-4 text-[color:var(--festive-gold)] sm:size-5"
         />
 
-        <p className="mt-14 text-xs sm:mt-16 sm:text-sm text-white/60">
-          © {new Date().getFullYear()} Kitolit • Festive Maker Series • Made with joy for young makers
-        </p>
+        <div className="mt-14 sm:mt-16 flex flex-col items-center justify-center gap-3">
+          <div className="rounded-2xl border border-white/40 bg-white/95 p-3 shadow-xl backdrop-blur-md">
+            <ImageWithFallback
+              src="/images/logos/kitolit_logo_vertical.png"
+              alt="Kitolit - Learn by Doing"
+              className="h-20 sm:h-24 w-auto object-contain"
+            />
+          </div>
+          <p className="mt-2 text-xs sm:text-sm text-white/70 font-medium">
+            © {new Date().getFullYear()} Kitolit • Festive Maker Series • Made with joy for young makers
+          </p>
+        </div>
       </div>
     </footer>
   );
