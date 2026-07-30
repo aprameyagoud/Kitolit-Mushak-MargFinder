@@ -3,14 +3,14 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { SectionHeading } from "./decor";
 
 const photos = [
-  { src: "https://images.unsplash.com/photo-1780751987564-79489283d67b?w=800&h=1000&fit=crop&auto=format", alt: "Children painting figures in a craft class", span: "row-span-2" },
-  { src: "https://images.unsplash.com/photo-1551401107-5d806c2909a6?w=800&h=600&fit=crop&auto=format", alt: "Child painting with a brush" },
-  { src: "https://images.unsplash.com/photo-1597933471507-1ca5765185d8?w=800&h=600&fit=crop&auto=format", alt: "Boy joining a live online class on a laptop" },
-  { src: "https://images.unsplash.com/photo-1756694915450-50c9796fb96d?w=800&h=1000&fit=crop&auto=format", alt: "Children happily crafting together", span: "row-span-2" },
-  { src: "https://images.unsplash.com/photo-1711840083711-1926d91eb9e1?w=800&h=600&fit=crop&auto=format", alt: "Hands working on a craft project" },
-  { src: "https://images.unsplash.com/photo-1531237848491-c44ca4736f27?w=800&h=600&fit=crop&auto=format", alt: "Child holding a paintbrush" },
-  { src: "https://images.unsplash.com/photo-1623076189461-f7706b741c04?w=800&h=600&fit=crop&auto=format", alt: "Girl learning online at home" },
-  { src: "https://images.unsplash.com/photo-1560831340-b9679dc9e9f0?w=800&h=600&fit=crop&auto=format", alt: "Group of children around a craft table" },
+  { src: "/images/gallery_1.png", alt: "Young Indian girl painting her Eco Tech Ganesha idol with vibrant colors", span: "row-span-2" },
+  { src: "/images/gallery_2.png", alt: "Indian boy following live guided online workshop on his laptop", span: "" },
+  { src: "/images/gallery_3.png", alt: "Indian siblings assembling their Eco Tech Ganesha kit together", span: "" },
+  { src: "/images/gallery_4.png", alt: "Proud Indian girl showing her completed Magical MushakBot companion", span: "row-span-2" },
+  { src: "/images/gallery_5.png", alt: "Close-up of child painting intricate festive details on Eco Tech Ganesha", span: "" },
+  { src: "/images/gallery_6.png", alt: "Mother and child unboxing the festive activity kit", span: "" },
+  { src: "/images/gallery_7.png", alt: "Young girl following interactive live video session on tablet", span: "" },
+  { src: "/images/video_thumb.png", alt: "Group of happy Indian children crafting together during the session", span: "" },
 ];
 
 export function Gallery() {
@@ -21,7 +21,7 @@ export function Gallery() {
         <SectionHeading
           eyebrow="Real Smiles"
           title={<>Kids building. Families beaming.</>}
-          subtitle="A peek at young makers bringing their Ganesha and Mushak to life."
+          subtitle="A peek at young makers bringing their Eco Tech Ganesha and Magical MushakBot to life."
         />
         <div className="mt-14 grid auto-rows-[200px] grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {photos.map((p, i) => (

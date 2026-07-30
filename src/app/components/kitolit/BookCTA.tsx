@@ -43,7 +43,7 @@ const deliveryFields: BookingFieldConfig[] = [
 function BookingField({ id, label, placeholder, type, autoComplete, min, max, pattern }: BookingFieldConfig) {
   return (
     <div className="space-y-1.5">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} className="text-sm sm:text-base font-medium">{label}</Label>
       <Input
         id={id}
         required
@@ -53,7 +53,7 @@ function BookingField({ id, label, placeholder, type, autoComplete, min, max, pa
         min={min}
         max={max}
         pattern={pattern}
-        className="h-12 rounded-xl bg-white"
+        className="h-12 min-h-[48px] rounded-xl bg-white text-base"
       />
     </div>
   );
@@ -146,9 +146,9 @@ export function BookButton({
       <DialogTrigger asChild>
         <Button
           size={size}
-          className={`rounded-full h-auto px-8 py-4 text-lg bg-primary text-primary-foreground shadow-[0_10px_30px_-8px_rgba(238,64,53,0.6)] hover:bg-primary hover:brightness-105 hover:-translate-y-0.5 transition-all ${className}`}
+          className={`rounded-full h-auto min-h-[48px] px-6 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg bg-primary text-primary-foreground shadow-[0_10px_30px_-8px_rgba(238,64,53,0.6)] hover:bg-primary hover:brightness-105 hover:-translate-y-0.5 transition-all ${className}`}
         >
-          <Sparkles className="size-5" />
+          <Sparkles className="size-5 shrink-0" />
           {label}
         </Button>
       </DialogTrigger>

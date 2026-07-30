@@ -6,8 +6,8 @@ import { SectionHeading, Mandala } from "./decor";
 const includes = [
   "Live guided online workshop session",
   "Free activity material delivered to your home",
-  "Handcrafted wooden Ganesha build",
-  "Interactive Magic Mushak build",
+  "Handcrafted Eco Tech Ganesha build",
+  "Interactive Magical MushakBot build",
   "Beginner friendly — ages 6 to 13",
   "Small batches + certificate of completion",
 ];
@@ -35,7 +35,7 @@ export function Pricing() {
             <span className="absolute right-4 top-4 sm:right-6 sm:top-6 rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-3 py-1 sm:px-4 sm:py-1.5 font-bold text-xs sm:text-sm text-white shadow-sm">
               Save ₹499
             </span>
-            <p className="font-[family:var(--font-display)] text-base sm:text-lg font-medium text-[color:var(--muted-foreground)]">DIY Ganesha Workshop</p>
+            <p className="font-[family:var(--font-display)] text-base sm:text-lg font-medium text-[color:var(--muted-foreground)]">Eco Tech Ganesha Workshop</p>
             <div className="mt-2 sm:mt-3 flex items-end gap-3 sm:gap-4">
               <span className="mb-1 sm:mb-2 text-xl sm:text-2xl font-medium text-[color:var(--muted-foreground)] line-through opacity-70">₹2999</span>
               <span className="font-[family:var(--font-display)] text-5xl sm:text-7xl font-extrabold text-[color:var(--brand-red)]">

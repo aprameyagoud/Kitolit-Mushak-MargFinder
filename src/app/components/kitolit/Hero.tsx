@@ -1,10 +1,11 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { BookButton } from "./BookCTA";
 import { FeatureChips } from "./FeatureChips";
 import { Mandala, GaneshaMark, MushakMark } from "./decor";
 import { workshopHighlights } from "./workshopHighlights";
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
   return (
     <header className="relative overflow-hidden bg-gradient-to-b from-[#FFF9F2] to-[#FFF0DD]">
       {/* soft festive wash */}
@@ -33,15 +34,15 @@ export function Hero() {
             <span className="inline-flex items-center gap-2 rounded-full bg-festive-gold/20 px-4 py-1.5 text-xs font-semibold text-[color:var(--festive-orange)] sm:text-sm">
               🪔 This Ganesh Chaturthi — Make, Don't Just Buy
             </span>
-            <h1 className="mt-5 text-[clamp(2.5rem,10vw,4rem)] leading-[1.05] tracking-tight text-foreground font-[family:var(--font-display)] font-extrabold">
-              DIY Ganesha{" "}
+            <h1 className="mt-4 sm:mt-5 text-[clamp(2.25rem,8vw,4rem)] leading-[1.08] tracking-tight text-foreground font-[family:var(--font-display)] font-extrabold">
+              Eco Tech Ganesha{" "}
               <span className="text-[color:var(--brand-red)]">Making</span>{" "}
               Workshop
             </h1>
             <p className="mt-4 text-base leading-relaxed text-[color:var(--muted-foreground)] sm:mt-5 sm:text-lg sm:max-w-lg">
-              A live, guided online session where children craft a beautiful{" "}
-              <strong className="text-foreground">wooden Ganesha</strong> and build an
-              interactive <strong className="text-foreground">Magic Mushak</strong> companion —
+              A live, guided online session where children craft a festive{" "}
+              <strong className="text-foreground">Eco Tech Ganesha</strong> and build an
+              interactive <strong className="text-foreground">Magical MushakBot</strong> companion —
               creativity meets joyful discovery.
             </p>
 
@@ -87,70 +88,73 @@ export function Hero() {
                 {/* The Path and Characters mapped inside SVG for perfect coordinate alignment */}
                 <svg className="absolute inset-0 h-full w-full" viewBox="0 0 400 400" fill="none">
                   <defs>
-                    {/* Radial gradient that animates along the exact same Bezier curve to recolor just the segment under Mushak */}
-                    <motion.radialGradient
-                      id="active-dash-gradient"
-                      gradientUnits="userSpaceOnUse"
-                      r="22"
-                      initial={{ cx: 60, cy: 340 }}
-                      animate={{
-                        cx: [60, 200, 285],
-                        cy: [340, 200, 100]
-                      }}
-                      transition={{
-                        duration: 4,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                        repeatType: "reverse"
-                      }}
-                    >
-                      <stop offset="0%" stopColor="#EE4035" stopOpacity="1" />
-                      <stop offset="60%" stopColor="#EE4035" stopOpacity="1" />
-                      <stop offset="100%" stopColor="#2359A4" stopOpacity="0.4" />
-                    </motion.radialGradient>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="8" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                    <linearGradient id="orbit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#EE4035" stopOpacity="0.6" />
+                      <stop offset="50%" stopColor="#F4B400" stopOpacity="0.6" />
+                      <stop offset="100%" stopColor="#2359A4" stopOpacity="0.6" />
+                    </linearGradient>
                   </defs>
 
-                  {/* Single Continuous Flowing dashed path with dynamic gradient stroke */}
-                  <motion.path
-                    id="motion-path"
-                    d="M 60,340 C 130,340 160,260 200,200 C 230,150 250,115 285,100"
-                    stroke="url(#active-dash-gradient)"
-                    strokeWidth="4"
-                    strokeDasharray="10 10"
-                    strokeLinecap="round"
-                    animate={{ strokeDashoffset: [0, -20] }}
-                    transition={{ duration: 1.2, ease: "linear", repeat: Infinity }}
+                  {/* Faint glowing orbit path */}
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="120"
+                    stroke="url(#orbit-gradient)"
+                    strokeWidth="1.5"
+                    strokeDasharray="6 8"
+                    fill="none"
+                    filter="url(#glow)"
+                    className="opacity-50"
                   />
-                  
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="120"
+                    stroke="url(#orbit-gradient)"
+                    strokeWidth="1"
+                    strokeDasharray="4 12"
+                    fill="none"
+                    className="opacity-80"
+                  />
+
                   {/* Container overlays the exact 400x400 space so offsetPath scales with the SVG */}
                   <foreignObject x="0" y="0" width="400" height="400">
                     <div className="relative h-full w-full">
-                      {/* Ganesha positioned to be the destination without overlapping the path */}
-                      <div className="absolute z-10 w-24 sm:w-32 drop-shadow-xl" style={{ left: '340px', top: '80px', marginLeft: '-48px', marginTop: '-48px' }}>
-                        <GaneshaMark className="w-full" />
+                      {/* Ganesha positioned exactly at visual center with slight floating motion */}
+                      <div className="absolute left-1/2 top-1/2 z-10 w-28 sm:w-36 -translate-x-1/2 -translate-y-1/2 drop-shadow-2xl">
+                        <motion.div
+                          animate={shouldReduceMotion ? { y: 0 } : { y: [-6, 6, -6] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <GaneshaMark className="w-full" />
+                        </motion.div>
                       </div>
 
-                      {/* Mushak precisely following the adjusted path */}
+                      {/* MushakBot continuously revolves in a perfect circular orbit */}
                       <motion.div
-                        className="absolute left-0 top-0 z-20 w-20 sm:w-24 drop-shadow-lg"
+                        className="absolute left-0 top-0 z-20"
                         initial={{ offsetDistance: "0%" }}
-                        animate={{ offsetDistance: "100%" }}
+                        animate={shouldReduceMotion ? { offsetDistance: "0%" } : { offsetDistance: "100%" }}
                         transition={{
-                          duration: 4,
-                          ease: "easeInOut",
+                          duration: 10,
+                          ease: "linear",
                           repeat: Infinity,
-                          repeatType: "reverse",
                         }}
                         style={{
-                          offsetPath: "path('M 60,340 C 130,340 160,260 200,200 C 230,150 250,115 285,100')",
-                          // Center the w-24 (96px width, ~72px height) on the path
-                          marginLeft: "-48px",
-                          marginTop: "-36px",
+                          offsetPath: "path('M 200,80 A 120,120 0 1,1 200,320 A 120,120 0 1,1 200,80')",
+                          offsetRotate: "auto",
                         }}
                       >
-                        {/* Hiding the internal SVG dashed line via Tailwind descendant selector to avoid modifying external files */}
-                        <div className="[&_path[stroke-dasharray]]:hidden">
-                          <MushakMark className="w-full" />
+                        <div className="w-16 sm:w-20 drop-shadow-lg -ml-8 -mt-6 sm:-ml-10 sm:-mt-[30px]">
+                          {/* Hiding the internal SVG dashed line via Tailwind descendant selector to avoid modifying external files */}
+                          <div className="[&_path[stroke-dasharray]]:hidden">
+                            <MushakMark className="w-full" />
+                          </div>
                         </div>
                       </motion.div>
                     </div>
@@ -160,8 +164,8 @@ export function Hero() {
                 {/* Label */}
                 <div className="absolute bottom-4 sm:bottom-6 flex w-[90%] sm:w-auto items-center justify-between gap-3 sm:gap-4 rounded-2xl border border-white/60 bg-white/80 px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg backdrop-blur-md">
                   <div className="flex flex-col text-center sm:text-left w-full sm:w-auto">
-                    <span className="font-[family:var(--font-display)] text-sm sm:text-base font-bold text-[color:var(--brand-blue)]">Magic Mushak</span>
-                    <span className="text-[11px] sm:text-xs font-medium text-[color:var(--muted-foreground)]">Magically finds its way to Ganesha</span>
+                    <span className="font-[family:var(--font-display)] text-sm sm:text-base font-bold text-[color:var(--brand-blue)]">Magical MushakBot</span>
+                    <span className="text-[11px] sm:text-xs font-medium text-[color:var(--muted-foreground)]">Magically guides its way to Eco Tech Ganesha</span>
                   </div>
                 </div>
               </div>

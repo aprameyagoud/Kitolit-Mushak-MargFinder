@@ -3,8 +3,8 @@ import { Hammer, Cpu, Palette } from "lucide-react";
 import { SectionHeading } from "../decor";
 
 const introCards = [
-  { icon: Palette, title: "Craft & Create", description: "Assemble and decorate a handcrafted wooden Ganesha idol." },
-  { icon: Cpu, title: "Bring to Life", description: "Assemble a friendly, interactive Magic Mushak companion." },
+  { icon: Palette, title: "Craft & Create", description: "Assemble and decorate a handcrafted Eco Tech Ganesha." },
+  { icon: Cpu, title: "Bring to Life", description: "Assemble a friendly, interactive Magical MushakBot companion." },
   { icon: Hammer, title: "Build Confidence", description: "Follow along live and finish something real, together." },
 ];
 

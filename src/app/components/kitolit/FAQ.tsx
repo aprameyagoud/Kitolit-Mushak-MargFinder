@@ -17,11 +17,11 @@ const faqs = [
   },
   {
     q: "Do we need to buy anything else?",
-    a: "No. Every part — wooden Ganesha pieces, paints, Mushak moving parts, tools and glue — arrives free in the activity material box before class.",
+    a: "No. Every part — Eco Tech Ganesha pieces, paints, Magical MushakBot companion parts, tools and glue — arrives free in the activity material box before class.",
   },
   {
-    q: "Is soldering or electronics experience needed?",
-    a: "Not at all. The Magic Mushak uses snap-together, beginner-friendly parts. No soldering, no prior experience required.",
+    q: "Is any prior building or technical experience needed?",
+    a: "Not at all. The Magical MushakBot uses snap-together, beginner-friendly parts designed for easy assembly with no prior experience needed.",
   },
   {
     q: "When will the material arrive?",

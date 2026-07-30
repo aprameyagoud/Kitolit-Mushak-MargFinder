@@ -63,7 +63,7 @@ export function GaneshaMark({ className = "" }: { className?: string }) {
   );
 }
 
-/* Playful line-following electronic Mushak (mouse) illustration */
+/* Playful Magical MushakBot illustration */
 export function MushakMark({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 160 120" className={className} aria-hidden="true">
