@@ -22,19 +22,31 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
-import { Mandala, GaneshaMark } from "./decor";
+import { Mandala } from "./decor";
 
 const confettiColors = ["#EE4035", "#2359A4", "#F4B400", "#FF8C00", "#10B981"];
 
+export type BookingFormData = {
+  parentName: string;
+  phone: string;
+  email: string;
+  childName: string;
+  childAge: string;
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+};
+
 const AGE_OPTIONS = [
-  "6 Years",
-  "7 Years",
-  "8 Years",
-  "9 Years",
-  "10 Years",
-  "11 Years",
-  "12 Years",
-  "13+ Years",
+  { label: "6 Years", value: "6" },
+  { label: "7 Years", value: "7" },
+  { label: "8 Years", value: "8" },
+  { label: "9 Years", value: "9" },
+  { label: "10 Years", value: "10" },
+  { label: "11 Years", value: "11" },
+  { label: "12 Years", value: "12" },
+  { label: "13+ Years", value: "13" },
 ];
 
 const POPULAR_STATES = [
@@ -128,7 +140,13 @@ function FormInput({
   );
 }
 
-function BookingSuccess({ onClose }: { onClose: () => void }) {
+function BookingSuccess({
+  onClose,
+  orderId,
+}: {
+  onClose: () => void;
+  orderId?: number | string;
+}) {
   return (
     <div className="relative overflow-hidden px-4 py-8 text-center sm:px-8 sm:py-12">
       <Mandala className="pointer-events-none absolute -right-16 -top-16 size-48 text-[color:var(--festive-gold)] opacity-20" />
@@ -149,8 +167,8 @@ function BookingSuccess({ onClose }: { onClose: () => void }) {
 
       <div className="mx-auto mt-6 max-w-sm rounded-2xl border border-[#E7D6C1] bg-white/80 p-4 text-left shadow-2xs backdrop-blur-xs">
         <div className="flex items-center justify-between text-xs font-semibold text-[#7E6E5E]">
-          <span>Booking Amount</span>
-          <span className="font-bold text-emerald-700">₹2,500 Paid (All-inclusive)</span>
+          <span>{orderId ? `Order #${orderId}` : "Booking Status"}</span>
+          <span className="font-bold text-emerald-700">Reserved (All-inclusive)</span>
         </div>
         <div className="mt-2 border-t border-[#F0E5D5] pt-2 text-xs text-[#6E6050]">
           <p className="flex items-center gap-1.5 font-medium">
@@ -170,8 +188,24 @@ function BookingSuccess({ onClose }: { onClose: () => void }) {
   );
 }
 
-function BookingForm({ onSubmit }: { onSubmit: () => void }) {
-  const [formData, setFormData] = useState({
+function BookingForm({
+  onSubmit,
+  isSubmitting = false,
+}: {
+  onSubmit: (formData: {
+    parentName: string;
+    phone: string;
+    email: string;
+    childName: string;
+    childAge: string;
+    address: string;
+    city: string;
+    state: string;
+    pincode: string;
+  }) => void;
+  isSubmitting?: boolean;
+}) {
+  const [formData, setFormData] = useState<BookingFormData>({
     parentName: "",
     phone: "",
     email: "",
@@ -192,7 +226,8 @@ function BookingForm({ onSubmit }: { onSubmit: () => void }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit();
+    if (isSubmitting) return;
+    onSubmit(formData);
   };
 
   return (
@@ -274,9 +309,9 @@ function BookingForm({ onSubmit }: { onSubmit: () => void }) {
                 <option value="" disabled>
                   Select age
                 </option>
-                {AGE_OPTIONS.map((age) => (
-                  <option key={age} value={age}>
-                    {age}
+                {AGE_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
                   </option>
                 ))}
               </select>
@@ -401,10 +436,20 @@ function BookingForm({ onSubmit }: { onSubmit: () => void }) {
         {/* CTA BUTTON */}
         <Button
           type="submit"
-          className="h-[52px] w-full rounded-xl bg-gradient-to-r from-[color:var(--brand-red)] via-[#E02E24] to-[#C81E15] text-base sm:text-lg font-bold text-white shadow-lg shadow-[color:var(--brand-red)]/25 transition-all duration-200 hover:brightness-110 active:scale-[0.99]"
+          disabled={isSubmitting}
+          className="h-[52px] w-full rounded-xl bg-gradient-to-r from-[color:var(--brand-red)] via-[#E02E24] to-[#C81E15] text-base sm:text-lg font-bold text-white shadow-lg shadow-[color:var(--brand-red)]/25 transition-all duration-200 hover:brightness-110 active:scale-[0.99] disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer"
         >
-          <Lock className="size-4.5 shrink-0" />
-          <span>BOOK & PAY NOW • ₹2500</span>
+          {isSubmitting ? (
+            <span className="inline-flex items-center gap-2">
+              <span className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <span>CREATING BOOKING...</span>
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-2">
+              <Lock className="size-4.5 shrink-0" />
+              <span>BOOK & PAY NOW • ₹2500</span>
+            </span>
+          )}
         </Button>
 
         {/* TRUST REASSURANCE */}
@@ -435,15 +480,71 @@ export function BookButton({
 }) {
   const [open, setOpen] = useState(false);
   const [done, setDone] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderInfo, setOrderInfo] = useState<{ orderId?: number | string; total?: string } | null>(null);
 
-  const handleBookingSubmit = () => {
-    confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: { y: 0.4 },
-      colors: confettiColors,
-    });
-    setDone(true);
+  const handleBookingSubmit = async (formData: {
+    parentName: string;
+    phone: string;
+    email: string;
+    childName: string;
+    childAge: string;
+    address: string;
+    city: string;
+    state: string;
+    pincode: string;
+  }) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(
+        "https://greenyellow-monkey-581582.hostingersite.com/wp-json/mushak/v1/booking",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            parent_name: formData.parentName,
+            phone: formData.phone,
+            email: formData.email,
+            child_name: formData.childName,
+            child_age: parseInt(formData.childAge, 10) || Number(formData.childAge) || 0,
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            postcode: formData.pincode,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Unable to create booking.");
+      }
+
+      console.log("WooCommerce order created:", data);
+      setOrderInfo({ orderId: data.order_id, total: data.total });
+
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.4 },
+        colors: confettiColors,
+      });
+
+      setDone(true);
+    } catch (error) {
+      console.error("Booking error:", error);
+
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -451,7 +552,10 @@ export function BookButton({
       open={open}
       onOpenChange={(o) => {
         setOpen(o);
-        if (!o) setDone(false);
+        if (!o) {
+          setDone(false);
+          setIsSubmitting(false);
+        }
       }}
     >
       <DialogTrigger asChild>
@@ -485,10 +589,16 @@ export function BookButton({
                 </DialogDescription>
               </DialogHeader>
 
-              <BookingForm onSubmit={handleBookingSubmit} />
+              <BookingForm
+                onSubmit={handleBookingSubmit}
+                isSubmitting={isSubmitting}
+              />
             </div>
           ) : (
-            <BookingSuccess onClose={() => setOpen(false)} />
+            <BookingSuccess
+              onClose={() => setOpen(false)}
+              orderId={orderInfo?.orderId}
+            />
           )}
         </ScrollArea>
       </DialogContent>
