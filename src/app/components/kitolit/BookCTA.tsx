@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
 import { Button } from "../ui/button";
 import {
@@ -20,8 +20,14 @@ import {
   MapPin,
   Lock,
   ChevronDown,
+  XCircle,
+  AlertTriangle,
+  Loader2,
+  ArrowLeft,
+  Home,
+  CreditCard,
+  RotateCcw,
 } from "lucide-react";
-import { ScrollArea } from "../ui/scroll-area";
 import { Mandala } from "./decor";
 
 const confettiColors = ["#EE4035", "#2359A4", "#F4B400", "#FF8C00", "#10B981"];
@@ -37,6 +43,14 @@ export type BookingFormData = {
   state: string;
   pincode: string;
 };
+
+export type BookingState =
+  | "form"
+  | "preparing"
+  | "processing"
+  | "success"
+  | "failed"
+  | "incomplete";
 
 const AGE_OPTIONS = [
   { label: "6 Years", value: "6" },
@@ -140,335 +154,208 @@ function FormInput({
   );
 }
 
-function BookingSuccess({
-  onClose,
-  orderId,
-}: {
-  onClose: () => void;
-  orderId?: number | string;
-}) {
+/* ─────────────────────────────────────────────
+   STATE: preparing
+   ───────────────────────────────────────────── */
+function PreparingPayment() {
   return (
-    <div className="relative overflow-hidden px-4 py-8 text-center sm:px-8 sm:py-12">
-      <Mandala className="pointer-events-none absolute -right-16 -top-16 size-48 text-[color:var(--festive-gold)] opacity-20" />
-      <div className="mx-auto flex size-18 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 shadow-inner">
-        <CheckCircle2 className="size-10" />
+    <div className="flex flex-col items-center px-4 py-8 text-center sm:px-8 sm:py-10">
+      <div className="relative mx-auto flex size-16 items-center justify-center rounded-2xl bg-blue-50 shadow-inner">
+        <Loader2 className="size-8 animate-spin text-[color:var(--brand-blue)]" />
       </div>
 
-      <div className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-100/70 px-3.5 py-1 text-xs font-bold text-emerald-800">
-        <Sparkles className="size-3.5" /> Seat Confirmed & Material Dispatched
-      </div>
-
-      <h3 className="mt-4 font-[family:var(--font-display)] text-2xl font-extrabold text-[#23201C] sm:text-3xl">
-        Seat Successfully Reserved!
+      <h3 className="mt-5 font-[family:var(--font-display)] text-xl font-extrabold text-[#23201C] sm:text-2xl">
+        Preparing secure payment
       </h3>
-      <p className="mx-auto mt-2.5 max-w-md text-sm leading-relaxed text-[#6E6050] sm:text-base">
-        Thank you for joining the Festive Maker family. We have received your booking details and will WhatsApp you the live session link and material tracking details shortly.
+      <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-[#6E6050]">
+        Please wait while we connect you to our secure payment gateway.
       </p>
 
-      <div className="mx-auto mt-6 max-w-sm rounded-2xl border border-[#E7D6C1] bg-white/80 p-4 text-left shadow-2xs backdrop-blur-xs">
-        <div className="flex items-center justify-between text-xs font-semibold text-[#7E6E5E]">
-          <span>{orderId ? `Order #${orderId}` : "Booking Status"}</span>
-          <span className="font-bold text-emerald-700">Reserved (All-inclusive)</span>
-        </div>
-        <div className="mt-2 border-t border-[#F0E5D5] pt-2 text-xs text-[#6E6050]">
-          <p className="flex items-center gap-1.5 font-medium">
-            <Truck className="size-3.5 text-[color:var(--brand-blue)] shrink-0" />
-            DIY Eco Tech Kit being packed for dispatch
-          </p>
+      <div className="mt-5 flex items-center gap-2 text-xs font-medium text-[#7E6E5E]">
+        <ShieldCheck className="size-4 text-emerald-600" />
+        <span>256-bit SSL encrypted</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   STATE: processing
+   ───────────────────────────────────────────── */
+function ProcessingPayment() {
+  return (
+    <div className="flex flex-col items-center px-4 py-8 text-center sm:px-8 sm:py-10">
+      <div className="relative mx-auto flex size-16 items-center justify-center rounded-2xl bg-amber-50 shadow-inner">
+        <Loader2 className="size-8 animate-spin text-[color:var(--festive-orange)]" />
+      </div>
+
+      <h3 className="mt-5 font-[family:var(--font-display)] text-xl font-extrabold text-[#23201C] sm:text-2xl">
+        Confirming your payment...
+      </h3>
+      <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-[#6E6050]">
+        Please don&apos;t close this window. We&apos;re securely verifying your payment.
+      </p>
+
+      <div className="mt-5 flex items-center gap-2 text-xs font-medium text-[#7E6E5E]">
+        <Lock className="size-4 text-[color:var(--brand-blue)]" />
+        <span>Securely processing via Razorpay</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   STATE: success
+   ───────────────────────────────────────────── */
+function BookingSuccess({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="relative overflow-hidden px-4 py-6 text-center sm:px-6 sm:py-8">
+      <Mandala className="pointer-events-none absolute -right-16 -top-16 size-48 text-[color:var(--festive-gold)] opacity-20" />
+
+      <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 shadow-inner">
+        <CheckCircle2 className="size-8" />
+      </div>
+
+      <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-100/70 px-3 py-0.5 text-xs font-bold text-emerald-800">
+        <Sparkles className="size-3.5" /> Booking Confirmed!
+      </div>
+
+      <h3 className="mt-3 font-[family:var(--font-display)] text-2xl font-extrabold text-[#23201C]">
+        Booking Confirmed!
+      </h3>
+      <p className="mx-auto mt-1 max-w-sm text-xs sm:text-sm leading-relaxed text-[#6E6050]">
+        Payment successful and spot reserved. Your child&apos;s creative journey begins soon!
+      </p>
+
+      {/* Mock booking details */}
+      <div className="mx-auto mt-4 max-w-sm rounded-xl border border-[#E7D6C1] bg-white/80 p-3.5 text-left shadow-2xs backdrop-blur-xs">
+        <div className="space-y-2 text-xs sm:text-sm">
+          <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
+            <span className="font-medium text-[#7E6E5E]">Booking ID</span>
+            <span className="font-bold text-[#23201C]">#MM-2026-0847</span>
+          </div>
+          <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
+            <span className="font-medium text-[#7E6E5E]">Amount Paid</span>
+            <span className="font-bold text-emerald-700">₹2500</span>
+          </div>
+          <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
+            <span className="font-medium text-[#7E6E5E]">Payment Status</span>
+            <span className="inline-flex items-center gap-1 font-bold text-emerald-700">
+              <CheckCircle2 className="size-3.5" /> Paid Successfully
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-[#7E6E5E]">Kit Delivery</span>
+            <span className="font-bold text-[#23201C]">3–5 business days</span>
+          </div>
         </div>
       </div>
+
+      <p className="mx-auto mt-3 max-w-xs text-[11px] text-[#8A7D6C]">
+        A confirmation email with full details has been sent to your registered email address.
+      </p>
 
       <Button
         onClick={onClose}
-        className="mt-7 h-12 w-full max-w-xs rounded-xl bg-[color:var(--brand-blue)] text-base font-bold text-white shadow-md hover:bg-[color:var(--brand-blue)]/90"
+        className="mt-5 h-11 w-full max-w-xs rounded-xl bg-[color:var(--brand-blue)] text-sm sm:text-base font-bold text-white shadow-md hover:bg-[color:var(--brand-blue)]/90 cursor-pointer"
       >
-        Done & Close
+        <Home className="size-4 shrink-0" />
+        Back to Home
       </Button>
     </div>
   );
 }
 
-function BookingForm({
-  onSubmit,
-  isSubmitting = false,
+/* ─────────────────────────────────────────────
+   STATE: failed
+   ───────────────────────────────────────────── */
+function PaymentFailed({
+  onRetry,
+  onBackToBooking,
 }: {
-  onSubmit: (formData: {
-    parentName: string;
-    phone: string;
-    email: string;
-    childName: string;
-    childAge: string;
-    address: string;
-    city: string;
-    state: string;
-    pincode: string;
-  }) => void;
-  isSubmitting?: boolean;
+  onRetry: () => void;
+  onBackToBooking: () => void;
 }) {
-  const [formData, setFormData] = useState<BookingFormData>({
-    parentName: "",
-    phone: "",
-    email: "",
-    childName: "",
-    childAge: "",
-    address: "",
-    city: "Mumbai",
-    state: "Maharashtra",
-    pincode: "400001",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-    onSubmit(formData);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 pb-2">
-      {/* SECTION 1: PARENT DETAILS */}
-      <div className="space-y-4 rounded-2xl border border-[#EADCC9]/80 bg-white/60 p-4 shadow-2xs sm:p-5">
-        <SectionTitle number="1" title="Parent Details" icon={User} />
-        
-        <div className="space-y-3.5">
-          <FormInput
-            id="parentName"
-            label="Parent's Name"
-            placeholder="Enter your full name"
-            required
-            autoComplete="name"
-            value={formData.parentName}
-            onChange={handleChange}
-          />
-
-          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-            <FormInput
-              id="phone"
-              label="Phone / WhatsApp"
-              placeholder="+91 98765 43210"
-              type="tel"
-              required
-              autoComplete="tel"
-              inputMode="tel"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-
-            <FormInput
-              id="email"
-              label="Email Address"
-              placeholder="you@example.com"
-              type="email"
-              required
-              autoComplete="email"
-              inputMode="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
+    <div className="flex flex-col items-center px-4 py-6 text-center sm:px-6 sm:py-8">
+      <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-red-50 text-red-500 shadow-inner">
+        <XCircle className="size-8" />
       </div>
 
-      {/* SECTION 2: CHILD DETAILS */}
-      <div className="space-y-4 rounded-2xl border border-[#EADCC9]/80 bg-white/60 p-4 shadow-2xs sm:p-5">
-        <SectionTitle number="2" title="Child Details" icon={HeartHandshake} />
+      <h3 className="mt-4 font-[family:var(--font-display)] text-2xl font-extrabold text-[#23201C]">
+        Payment Failed
+      </h3>
+      <p className="mx-auto mt-1.5 max-w-sm text-xs sm:text-sm leading-relaxed text-[#6E6050]">
+        Your payment could not be completed. Don&apos;t worry — no booking has been confirmed yet.
+      </p>
 
-        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-          <FormInput
-            id="childName"
-            label="Child's Name"
-            placeholder="Enter child's name"
-            required
-            autoComplete="off"
-            value={formData.childName}
-            onChange={handleChange}
-          />
-
-          <div className="flex flex-col gap-1.5">
-            <Label
-              htmlFor="childAge"
-              className="text-xs font-semibold tracking-wide text-[#3E342B] sm:text-sm"
-            >
-              Child's Age <span className="text-[color:var(--brand-red)]">*</span>
-            </Label>
-            <div className="relative">
-              <select
-                id="childAge"
-                name="childAge"
-                required
-                value={formData.childAge}
-                onChange={handleChange}
-                className="h-[48px] sm:h-[50px] w-full appearance-none rounded-xl border border-[#DDCFBD] bg-white px-3.5 pr-10 text-sm sm:text-base font-medium text-[#23201C] shadow-2xs transition-all duration-150 outline-none focus:border-[color:var(--brand-red)] focus:ring-2 focus:ring-[color:var(--brand-red)]/20"
-              >
-                <option value="" disabled>
-                  Select age
-                </option>
-                {AGE_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 size-4 -translate-y-1/2 text-[#7E6E5E] opacity-70" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* SECTION 3: DELIVERY DETAILS */}
-      <div className="space-y-4 rounded-2xl border border-[#EADCC9]/80 bg-white/60 p-4 shadow-2xs sm:p-5">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <SectionTitle number="3" title="Delivery Details" icon={MapPin} />
-          <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-800 border border-emerald-500/20 sm:self-auto">
-            <Truck className="size-3.5 text-emerald-600 shrink-0" />
-            <span>Free Delivery Included</span>
-          </div>
-        </div>
-
-        <div className="space-y-3.5">
-          <div className="flex flex-col gap-1.5">
-            <Label
-              htmlFor="address"
-              className="text-xs font-semibold tracking-wide text-[#3E342B] sm:text-sm"
-            >
-              Full Address <span className="text-[color:var(--brand-red)]">*</span>
-            </Label>
-            <textarea
-              id="address"
-              name="address"
-              required
-              rows={2}
-              placeholder="Flat / House No., Building, Street, Area"
-              autoComplete="street-address"
-              value={formData.address}
-              onChange={handleChange}
-              className="min-h-[58px] w-full resize-none rounded-xl border border-[#DDCFBD] bg-white p-3 text-sm sm:text-base font-medium text-[#23201C] placeholder:text-[#9F9180] shadow-2xs transition-all duration-150 outline-none focus:border-[color:var(--brand-red)] focus:ring-2 focus:ring-[color:var(--brand-red)]/20"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-3">
-            <FormInput
-              id="city"
-              label="City"
-              placeholder="Mumbai"
-              required
-              autoComplete="address-level2"
-              value={formData.city}
-              onChange={handleChange}
-            />
-
-            <div className="flex flex-col gap-1.5">
-              <Label
-                htmlFor="state"
-                className="text-xs font-semibold tracking-wide text-[#3E342B] sm:text-sm"
-              >
-                State <span className="text-[color:var(--brand-red)]">*</span>
-              </Label>
-              <div className="relative">
-                <select
-                  id="state"
-                  name="state"
-                  required
-                  value={formData.state}
-                  onChange={handleChange}
-                  className="h-[48px] sm:h-[50px] w-full appearance-none rounded-xl border border-[#DDCFBD] bg-white px-3.5 pr-10 text-sm sm:text-base font-medium text-[#23201C] shadow-2xs transition-all duration-150 outline-none focus:border-[color:var(--brand-red)] focus:ring-2 focus:ring-[color:var(--brand-red)]/20"
-                >
-                  {POPULAR_STATES.map((st) => (
-                    <option key={st} value={st}>
-                      {st}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 size-4 -translate-y-1/2 text-[#7E6E5E] opacity-70" />
-              </div>
-            </div>
-
-            <FormInput
-              id="pincode"
-              label="PIN Code"
-              placeholder="400001"
-              required
-              pattern="[0-9]{6}"
-              maxLength={6}
-              inputMode="numeric"
-              autoComplete="postal-code"
-              value={formData.pincode}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* PRICE SUMMARY & CTA SECTION */}
-      <div className="space-y-3.5 rounded-2xl border border-[color:var(--festive-gold)]/50 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-red-500/10 p-4 sm:p-5 shadow-xs">
-        <div className="flex items-center justify-between">
-          <div className="space-y-0.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-[color:var(--festive-orange)]">
-              Workshop Fee
-            </span>
-            <div className="flex items-baseline gap-2">
-              <span className="text-sm font-medium text-[#8A7D6C] line-through">₹2999</span>
-              <span className="font-[family:var(--font-display)] text-3xl sm:text-4xl font-extrabold text-[color:var(--brand-red)]">
-                ₹2500
-              </span>
-              <span className="rounded-full bg-[color:var(--brand-red)] px-2 py-0.5 text-[11px] font-extrabold text-white">
-                SAVE ₹499
-              </span>
-            </div>
-          </div>
-
-          <div className="text-right">
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-extrabold text-emerald-800">
-              <Truck className="size-3.5 text-emerald-600" /> FREE Home Delivery
-            </span>
-            <p className="mt-1 text-[11px] font-medium text-[#7E6E5E]">
-              Includes full DIY kit + Live session
-            </p>
-          </div>
-        </div>
-
-        {/* CTA BUTTON */}
+      <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
         <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="h-[52px] w-full rounded-xl bg-gradient-to-r from-[color:var(--brand-red)] via-[#E02E24] to-[#C81E15] text-base sm:text-lg font-bold text-white shadow-lg shadow-[color:var(--brand-red)]/25 transition-all duration-200 hover:brightness-110 active:scale-[0.99] disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer"
+          onClick={onRetry}
+          className="h-11 w-full rounded-xl bg-[color:var(--brand-red)] text-sm sm:text-base font-bold text-white shadow-md hover:bg-[color:var(--brand-red)]/90 cursor-pointer"
         >
-          {isSubmitting ? (
-            <span className="inline-flex items-center gap-2">
-              <span className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-              <span>CREATING BOOKING...</span>
-            </span>
-          ) : (
-            <span className="inline-flex items-center gap-2">
-              <Lock className="size-4.5 shrink-0" />
-              <span>BOOK & PAY NOW • ₹2500</span>
-            </span>
-          )}
+          <RotateCcw className="size-4 shrink-0" />
+          Try Again
         </Button>
-
-        {/* TRUST REASSURANCE */}
-        <div className="flex flex-col items-center justify-center gap-1.5 pt-1 text-center text-xs text-[#7E6E5E]">
-          <div className="flex flex-wrap items-center justify-center gap-2 font-medium text-[#5D5043]">
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="size-4 text-emerald-600" /> 100% Secure Payment
-            </span>
-            <span>•</span>
-            <span>UPI / Cards / NetBanking</span>
-            <span>•</span>
-            <span>Instant WhatsApp Confirmation</span>
-          </div>
-        </div>
+        <Button
+          onClick={onBackToBooking}
+          variant="outline"
+          className="h-11 w-full rounded-xl border-[#DDCFBD] text-sm sm:text-base font-bold text-[#3E342B] hover:bg-[#F5EDE2] cursor-pointer"
+        >
+          <ArrowLeft className="size-4 shrink-0" />
+          Back to Booking
+        </Button>
       </div>
-    </form>
+    </div>
   );
 }
 
+/* ─────────────────────────────────────────────
+   STATE: incomplete
+   ───────────────────────────────────────────── */
+function PaymentIncomplete({
+  onCompletePayment,
+  onCancelBooking,
+}: {
+  onCompletePayment: () => void;
+  onCancelBooking: () => void;
+}) {
+  return (
+    <div className="flex flex-col items-center px-4 py-6 text-center sm:px-6 sm:py-8">
+      <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-500 shadow-inner">
+        <AlertTriangle className="size-8" />
+      </div>
+
+      <h3 className="mt-4 font-[family:var(--font-display)] text-2xl font-extrabold text-[#23201C]">
+        Payment Incomplete
+      </h3>
+      <p className="mx-auto mt-1.5 max-w-sm text-xs sm:text-sm leading-relaxed text-[#6E6050]">
+        Your booking details are saved, but payment has not been completed.
+      </p>
+
+      <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
+        <Button
+          onClick={onCompletePayment}
+          className="h-11 w-full rounded-xl bg-[color:var(--brand-red)] text-sm sm:text-base font-bold text-white shadow-md hover:bg-[color:var(--brand-red)]/90 cursor-pointer"
+        >
+          <CreditCard className="size-4 shrink-0" />
+          Complete Payment
+        </Button>
+        <Button
+          onClick={onCancelBooking}
+          variant="outline"
+          className="h-11 w-full rounded-xl border-[#DDCFBD] text-sm sm:text-base font-bold text-[#3E342B] hover:bg-[#F5EDE2] cursor-pointer"
+        >
+          Cancel Booking
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   MAIN EXPORT: BookButton
+   ───────────────────────────────────────────── */
 export function BookButton({
   className = "",
   size = "lg",
@@ -479,129 +366,145 @@ export function BookButton({
   label?: string;
 }) {
   const [open, setOpen] = useState(false);
-  const [done, setDone] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [orderInfo, setOrderInfo] = useState<{ orderId?: number | string; total?: string } | null>(null);
+  const [bookingState, setBookingState] = useState<BookingState>("form");
 
-  const handleBookingSubmit = async (formData: {
-    parentName: string;
-    phone: string;
-    email: string;
-    childName: string;
-    childAge: string;
-    address: string;
-    city: string;
-    state: string;
-    pincode: string;
-  }) => {
-    setIsSubmitting(true);
-    try {
-      const response = await fetch(
-        "https://greenyellow-monkey-581582.hostingersite.com/wp-json/mushak/v1/booking",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            parent_name: formData.parentName,
-            phone: formData.phone,
-            email: formData.email,
-            child_name: formData.childName,
-            child_age: parseInt(formData.childAge, 10) || Number(formData.childAge) || 0,
-            address: formData.address,
-            city: formData.city,
-            state: formData.state,
-            postcode: formData.pincode,
-          }),
-        }
-      );
+  const isFormState = bookingState === "form";
 
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.message || "Unable to create booking.");
-      }
-
-      console.log("WooCommerce order created:", data);
-      setOrderInfo({ orderId: data.order_id, total: data.total });
-
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.4 },
-        colors: confettiColors,
-      });
-
-      setDone(true);
-    } catch (error) {
-      console.error("Booking error:", error);
-
-      alert(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong. Please try again."
-      );
-    } finally {
-      setIsSubmitting(false);
+  // Dev testing listener
+  useEffect(() => {
+    if (import.meta.env.DEV) {
+      const handleSetState = (e: CustomEvent<BookingState>) => {
+        if (e.detail) setBookingState(e.detail);
+      };
+      window.addEventListener("setBookingState" as any, handleSetState);
+      return () => window.removeEventListener("setBookingState" as any, handleSetState);
     }
-  };
+  }, []);
+
+  // Listen for iframe form submission messages
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (
+        event.data &&
+        typeof event.data === "string" &&
+        (event.data.includes("fluentform_submission_success") ||
+          event.data.includes("form_success"))
+      ) {
+        setBookingState("preparing");
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={(o) => {
-        setOpen(o);
-        if (!o) {
-          setDone(false);
-          setIsSubmitting(false);
-        }
-      }}
-    >
-      <DialogTrigger asChild>
-        <Button
-          size={size}
-          className={`rounded-full h-auto min-h-[48px] px-6 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg bg-primary text-primary-foreground shadow-[0_10px_30px_-8px_rgba(238,64,53,0.6)] hover:bg-primary hover:brightness-105 hover:-translate-y-0.5 transition-all cursor-pointer ${className}`}
-        >
-          <Sparkles className="size-5 shrink-0" />
-          {label}
-        </Button>
-      </DialogTrigger>
-      
-      <DialogContent className="max-h-[94vh] w-full max-w-[calc(100%-1.5rem)] sm:max-w-xl md:max-w-2xl rounded-3xl border border-[#EADCC9] bg-[color:var(--ivory)] p-0 shadow-2xl overflow-hidden">
-        <ScrollArea className="max-h-[92vh] px-4 py-5 sm:px-8 sm:py-7 overflow-y-auto">
-          {!done ? (
-            <div className="space-y-6">
-              <DialogHeader className="relative space-y-1.5 text-left border-b border-[#EADCC9]/70 pb-4">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-festive-gold/25 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-[color:var(--festive-orange)]">
-                    🪔 Hands-on Maker Series
-                  </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
-                    Free Delivery
-                  </span>
-                </div>
-                <DialogTitle className="font-[family:var(--font-display)] text-2xl sm:text-3xl font-extrabold tracking-tight text-[#23201C]">
-                  BOOK YOUR GANESHA WORKSHOP
-                </DialogTitle>
-                <DialogDescription className="text-xs sm:text-sm font-medium text-[#6E6050]">
-                  Live guided online session • Activity material delivered free to your home • Ages 6–13
-                </DialogDescription>
-              </DialogHeader>
+    <>
+      <Dialog
+        open={open}
+        onOpenChange={(o) => {
+          setOpen(o);
+          if (!o) {
+            setBookingState("form");
+          }
+        }}
+      >
+        <DialogTrigger asChild>
+          <Button
+            size={size}
+            className={`rounded-full h-auto min-h-[48px] px-6 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg bg-primary text-primary-foreground shadow-[0_10px_30px_-8px_rgba(238,64,53,0.6)] hover:bg-primary hover:brightness-105 hover:-translate-y-0.5 transition-all cursor-pointer ${className}`}
+          >
+            <Sparkles className="size-5 shrink-0" />
+            {label}
+          </Button>
+        </DialogTrigger>
 
-              <BookingForm
-                onSubmit={handleBookingSubmit}
-                isSubmitting={isSubmitting}
-              />
+        <DialogContent
+          className={`w-full max-w-[calc(100%-1.5rem)] rounded-3xl border border-[#EADCC9] bg-[color:var(--ivory)] p-0 shadow-2xl flex flex-col ${
+            isFormState
+              ? "max-h-[94vh] sm:max-w-xl md:max-w-2xl overflow-hidden"
+              : "sm:max-w-md md:max-w-lg h-auto min-h-0 overflow-visible"
+          }`}
+        >
+          {/* ── FORM STATE: iframe with scroll ── */}
+          {isFormState && (
+            <div className="max-h-[92vh] px-4 py-5 sm:px-8 sm:py-7 overflow-y-auto w-full">
+              <div className="space-y-6">
+                <DialogHeader className="relative space-y-1.5 text-left border-b border-[#EADCC9]/70 pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-festive-gold/25 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-[color:var(--festive-orange)]">
+                      🪔 Hands-on Maker Series
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
+                      Free Delivery
+                    </span>
+                  </div>
+                  <DialogTitle 
+                    className="font-[family:var(--font-display)] text-2xl sm:text-3xl font-extrabold tracking-tight text-[#23201C]"
+                    onDoubleClick={() => import.meta.env.DEV && setBookingState("preparing")}
+                    title={import.meta.env.DEV ? "DEV: Double-click to simulate form submission" : undefined}
+                  >
+                    BOOK YOUR GANESHA WORKSHOP
+                  </DialogTitle>
+                  <DialogDescription className="text-xs sm:text-sm font-medium text-[#6E6050]">
+                    Live guided online session • Activity material delivered free to your home • Ages 6–13
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div className="w-full overflow-hidden rounded-2xl">
+                  <iframe
+                    src="https://greenyellow-monkey-581582.hostingersite.com/ganesha-booking-form/"
+                    title="Ganesha Workshop Booking"
+                    className="block w-full border-0"
+                    style={{
+                      height: "700px",
+                      width: "100%",
+                    }}
+                  />
+                </div>
+              </div>
             </div>
-          ) : (
-            <BookingSuccess
-              onClose={() => setOpen(false)}
-              orderId={orderInfo?.orderId}
-            />
           )}
-        </ScrollArea>
-      </DialogContent>
-    </Dialog>
+
+          {/* ── NON-FORM STATES: shrink to content, no fixed height ── */}
+          {!isFormState && (
+            <div className="w-full h-auto min-h-0 flex-none p-0">
+              {/* Hidden accessible title/description for non-form states */}
+              <DialogTitle className="sr-only">Booking Status</DialogTitle>
+              <DialogDescription className="sr-only">Booking payment status</DialogDescription>
+
+              {bookingState === "preparing" && <PreparingPayment />}
+
+              {bookingState === "processing" && <ProcessingPayment />}
+
+              {bookingState === "success" && (
+                <BookingSuccess
+                  onClose={() => {
+                    setOpen(false);
+                    setBookingState("form");
+                  }}
+                />
+              )}
+
+              {bookingState === "failed" && (
+                <PaymentFailed
+                  onRetry={() => setBookingState("preparing")}
+                  onBackToBooking={() => setBookingState("form")}
+                />
+              )}
+
+              {bookingState === "incomplete" && (
+                <PaymentIncomplete
+                  onCompletePayment={() => setBookingState("preparing")}
+                  onCancelBooking={() => {
+                    setOpen(false);
+                    setBookingState("form");
+                  }}
+                />
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
