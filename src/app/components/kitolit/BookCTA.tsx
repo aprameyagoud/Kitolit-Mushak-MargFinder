@@ -381,20 +381,20 @@ export function BookButton({
     }
   }, []);
 
-  // Listen for iframe form submission messages
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (
-        event.data &&
-        typeof event.data === "string" &&
-        (event.data.includes("fluentform_submission_success") ||
-          event.data.includes("form_success"))
+        event.data?.type === "FLUENT_FORM_SUCCESS"
       ) {
         setBookingState("preparing");
       }
     };
+
     window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
   }, []);
 
   return (
@@ -451,15 +451,17 @@ export function BookButton({
                 </DialogHeader>
 
                 <div className="w-full overflow-hidden rounded-2xl">
-                  <iframe
-                    src="https://greenyellow-monkey-581582.hostingersite.com/ganesha-booking-form/"
-                    title="Ganesha Workshop Booking"
-                    className="block w-full border-0"
-                    style={{
-                      height: "700px",
-                      width: "100%",
-                    }}
-                  />
+                  {bookingState === "form" && (
+                    <iframe
+                      src="https://greenyellow-monkey-581582.hostingersite.com/ganesha-booking-form/"
+                      title="Ganesha Workshop Booking"
+                      className="block w-full border-0"
+                      style={{
+                        height: "700px",
+                        width: "100%",
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </div>
