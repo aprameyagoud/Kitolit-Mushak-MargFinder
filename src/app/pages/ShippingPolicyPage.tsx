@@ -1,43 +1,56 @@
 import { PolicyLayout } from "../components/kitolit/PolicyLayout";
+import { Link } from "react-router";
 
 export function ShippingPolicyPage() {
   return (
     <PolicyLayout title="Shipping Policy">
-      <p>Last updated: {new Date().toLocaleDateString('en-IN')}</p>
-
-      <h2>1. General Information</h2>
       <p>
-        All workshop bookings include the free delivery of activity materials (Eco Tech Ganesha parts, Magical MushakBot parts, paints, tools, etc.) required for the live session. Subject to stock availability, we aim to dispatch materials promptly to ensure they arrive before your scheduled workshop.
+        This Shipping Policy applies to the physical materials associated with the Eco Tech Ganesha Workshop.
       </p>
 
-      <h2>2. Delivery Locations</h2>
+      <h2>1. Delivery of Workshop Materials</h2>
       <p>
-        We currently ship activity materials within India.
+        Physical workshop materials may be delivered to the address provided during booking.
       </p>
 
-      <h2>3. Delivery Timeframes</h2>
+      <h2>2. Delivery Information</h2>
       <p>
-        Materials are dispatched a few days prior to your chosen batch. Standard delivery times within India are typically 3-7 business days from the date of dispatch. You will receive tracking information once your package has shipped.
+        The customer is responsible for providing an accurate delivery address.
       </p>
 
-      <h2>4. Shipping Costs</h2>
+      <h2>3. Delivery Charges</h2>
       <p>
-        Shipping of the activity material is completely free of charge and included in your workshop booking.
+        Applicable delivery charges, where applicable, will be communicated during the booking/order process.
       </p>
 
-      <h2>5. Damaged Items in Transport</h2>
+      <h2>4. Delivery Timeline</h2>
       <p>
-        If there is any damage to the packaging on delivery or if any parts are missing/damaged upon unboxing, contact us immediately at <a href="mailto:support@kitolit.com">support@kitolit.com</a> or <a href="tel:+919110582315">+91 9110582315</a> with your booking details and photos of the damage. We will arrange a replacement as quickly as possible.
+        Domestic delivery may take approximately 3–7 working days from the applicable order/dispatch timeline, subject to location and logistics conditions.
       </p>
 
-      <h2>6. Contact Us</h2>
+      <h2>5. Workshop Timing</h2>
       <p>
-        If you have any further questions about shipping and delivery, please contact us:
+        Customers should complete their booking according to any communicated booking deadline so materials can be arranged before the workshop.
       </p>
+
+      <h2>6. Incorrect Address</h2>
       <p>
-        Kitolit Robotics & AI<br />
-        Email: support@kitolit.com<br />
-        Phone: +91 9110582315
+        If an incorrect or incomplete address is provided, delivery may be delayed or affected. Customers should contact support promptly if a correction is needed.
+      </p>
+
+      <h2>7. Delays</h2>
+      <p>
+        Delivery may be affected by courier operations, location, weather, public holidays, or other logistics factors.
+      </p>
+
+      <h2>8. Damaged or Lost Materials</h2>
+      <p>
+        Customers should contact Kitolit support promptly and provide relevant order/booking information and supporting details so the issue can be reviewed. Any resolution should be subject to the specific circumstances and operational feasibility.
+      </p>
+
+      <h2>9. Contact</h2>
+      <p>
+        If you have any questions about delivery, please reach out via our <Link to="/contact">Contact Us</Link> page.
       </p>
     </PolicyLayout>
   );

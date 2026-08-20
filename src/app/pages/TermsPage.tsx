@@ -1,49 +1,67 @@
 import { PolicyLayout } from "../components/kitolit/PolicyLayout";
+import { Link } from "react-router";
 
 export function TermsPage() {
   return (
     <PolicyLayout title="Terms & Conditions">
-      <p>Last updated: {new Date().toLocaleDateString('en-IN')}</p>
-
-      <h2>1. Introduction</h2>
       <p>
-        These Website Standard Terms and Conditions written on this webpage shall manage your use of our website and services provided by Kitolit Robotics & AI ("we", "us", or "our").
+        These Terms & Conditions apply to the Eco Tech Ganesha Workshop provided by Kitolit Robotics & AI.
       </p>
 
-      <h2>2. Intellectual Property Rights</h2>
-      <p>
-        Other than the content you own, under these Terms, Kitolit Robotics & AI and/or its licensors own all the intellectual property rights and materials contained in this Website and our workshop materials.
-      </p>
+      <h2>1. Workshop Booking</h2>
+      <p>A booking is subject to successful payment verification.</p>
 
-      <h2>3. Restrictions</h2>
-      <p>You are specifically restricted from all of the following:</p>
+      <h2>2. Age Eligibility</h2>
+      <p>The workshop is intended for children aged 6–13.</p>
+
+      <h2>3. Parent / Guardian Responsibility</h2>
+      <p>The booking information is expected to be provided by a parent or legal guardian.</p>
+
+      <h2>4. Workshop Participation</h2>
+      <p>Participants must provide accurate booking details required for workshop coordination and delivery.</p>
+
+      <h2>5. Workshop Materials</h2>
+      <p>The workshop materials include:</p>
       <ul>
-        <li>Publishing any Website or workshop material in any other media without permission;</li>
-        <li>Selling, sublicensing and/or otherwise commercializing any Website or workshop material;</li>
-        <li>Publicly performing and/or showing any Website material;</li>
-        <li>Using this Website in any way that is or may be damaging to this Website;</li>
-        <li>Using this Website in any way that impacts user access to this Website;</li>
+        <li>Board</li>
+        <li>Wood cutouts</li>
+        <li>Wheels</li>
+        <li>Path</li>
       </ul>
 
-      <h2>4. Booking and Payment</h2>
+      <h2>6. Online Workshop</h2>
+      <p>The workshop is conducted online.</p>
+
+      <h2>7. Workshop Schedule</h2>
+      <p>Workshop date, time, duration, and access details may be communicated to confirmed participants once finalized.</p>
+
+      <h2>8. Payment</h2>
       <p>
-        All bookings for workshops are subject to availability. Payment must be made in full at the time of booking. Prices are subject to change without notice, but changes will not affect bookings that have already been accepted.
+        Payment methods may include UPI, cards, and net banking through the supported payment gateway. A frontend success screen alone does not constitute final payment confirmation. The booking is considered confirmed only after successful payment verification.
       </p>
 
-      <h2>5. Governing Law & Jurisdiction</h2>
+      <h2>9. Pricing</h2>
+      <ul>
+        <li><strong>Current offer price:</strong> ₹2,000</li>
+        <li><strong>MRP:</strong> ₹3,000</li>
+      </ul>
+
+      <h2>10. Delivery</h2>
+      <p>Applicable delivery details and charges are governed by the <Link to="/shipping-policy">Shipping Policy</Link>.</p>
+
+      <h2>11. Cancellation and Refunds</h2>
       <p>
-        These Terms will be governed by and interpreted in accordance with the laws of India, and you submit to the non-exclusive jurisdiction of the state and federal courts located in India for the resolution of any disputes.
+        Customer-initiated cancellation is not available after a confirmed booking. Any applicable exceptions, service cancellation, or other refund circumstances are governed by the <Link to="/cancellation-refund-policy">Cancellation & Refund Policy</Link>.
       </p>
-      
-      <h2>6. Contact Us</h2>
+
+      <h2>12. Changes</h2>
       <p>
-        If you have any questions about these Terms, please contact us at:
+        Kitolit may update workshop-related operational details when reasonably necessary, with relevant communication to confirmed participants where applicable.
       </p>
+
+      <h2>13. Contact</h2>
       <p>
-        Kitolit Robotics & AI<br />
-        Hyderabad, India<br />
-        Email: support@kitolit.com<br />
-        Phone: +91 9110582315
+        If you have any questions, please <Link to="/contact">Contact Us</Link>.
       </p>
     </PolicyLayout>
   );
