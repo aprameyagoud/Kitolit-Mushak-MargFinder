@@ -25,9 +25,9 @@ export function FinalCTA() {
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:mt-10 sm:gap-6 w-full">
           <BookButton className="w-full max-w-[280px] sm:max-w-none scale-105 shadow-[0_0_30px_rgba(244,180,0,0.3)] hover:shadow-[0_0_50px_rgba(244,180,0,0.5)] sm:scale-110" />
           <div className="flex items-baseline gap-2.5 sm:gap-3 text-white mt-2 sm:mt-0">
-            <span className="text-base sm:text-lg text-white/70 line-through">₹2999</span>
+            <span className="text-base sm:text-lg text-white/70 line-through">₹3000</span>
             <span className="font-[family:var(--font-display)] text-4xl sm:text-5xl font-bold text-[color:var(--festive-gold)] drop-shadow-md">
-              ₹2500
+              ₹2000
             </span>
           </div>
         </div>

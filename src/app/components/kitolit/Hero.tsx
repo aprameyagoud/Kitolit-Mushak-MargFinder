@@ -52,12 +52,12 @@ export function Hero() {
             <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <BookButton className="w-full sm:w-auto" />
               <div className="flex items-center gap-2 w-full justify-center sm:w-auto sm:justify-start">
-                <span className="text-[color:var(--muted-foreground)] line-through opacity-80 text-sm sm:text-base">₹2999</span>
+                <span className="text-[color:var(--muted-foreground)] line-through opacity-80 text-sm sm:text-base">₹3000</span>
                 <span className="text-3xl font-[family:var(--font-display)] font-extrabold text-[color:var(--brand-blue)] sm:text-4xl">
-                  ₹2500
+                  ₹2000
                 </span>
                 <span className="rounded-full bg-[color:var(--brand-red)] px-2.5 py-0.5 text-xs font-bold text-white shadow-sm">
-                  Save ₹499
+                  Save ₹1000
                 </span>
               </div>
             </div>

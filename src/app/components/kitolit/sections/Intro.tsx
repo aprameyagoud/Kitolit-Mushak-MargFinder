@@ -14,7 +14,7 @@ export function Intro() {
       <SectionHeading
         eyebrow="What is it?"
         title={<>One joyful session. Two things they'll be proud of.</>}
-        subtitle="Kitolit's certified instructors guide small batches of children step-by-step over a live video session — no experience needed. Parents just help unbox; kids do the making."
+        subtitle="Guidance from Kitolit's instructors over a live video session — no experience needed. Parents just help unbox; kids do the making."
       />
       <div className="mt-10 grid gap-4 sm:mt-16 sm:grid-cols-3">
         {introCards.map(({ icon: Icon, title, description }) => (
