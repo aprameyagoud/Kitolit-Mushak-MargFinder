@@ -1,49 +1,85 @@
 import { PolicyLayout } from "../components/kitolit/PolicyLayout";
+import { Link } from "react-router";
 
 export function PrivacyPolicyPage() {
   return (
     <PolicyLayout title="Privacy Policy">
-      <p>Last updated: {new Date().toLocaleDateString('en-IN')}</p>
+      <p>
+        Kitolit Robotics & AI ("we", "our", or "us") respects your privacy and is committed to protecting the information you share with us. This privacy policy explains how we collect and process information when you use our website or book our workshops.
+      </p>
+
+      <h2>1. Information Collected</h2>
+      <p>
+        During the workshop booking process, we collect the following information to facilitate your booking and material delivery:
+      </p>
+      <ul>
+        <li>Parent's name</li>
+        <li>Email address</li>
+        <li>Child's name</li>
+        <li>Child's age</li>
+        <li>Address</li>
+        <li>City</li>
+        <li>State</li>
+        <li>Pincode</li>
+      </ul>
+
+      <h2>2. Children's Information</h2>
+      <p>
+        Our workshops are intended for children aged 6–13. Because child information (such as name and age) is collected for participation purposes, we require and expect that all booking information is submitted by a parent or legal guardian on behalf of the child.
+      </p>
+
+      <h2>3. Purpose of Collection</h2>
+      <p>
+        We use the collected information for the following operational purposes:
+      </p>
+      <ul>
+        <li>To process workshop bookings.</li>
+        <li>To communicate booking-related information.</li>
+        <li>To arrange the delivery of applicable workshop materials.</li>
+        <li>To provide customer support.</li>
+        <li>To maintain booking records.</li>
+        <li>To process payment-related workflows through our payment provider.</li>
+        <li>To send future workshop or promotional communications.</li>
+      </ul>
       
-      <p>
-        Kitolit Robotics & AI ("we", "our", or "us") respects your privacy and is committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights.
-      </p>
+      {/* 
+        IMPLEMENTATION NOTE: 
+        Currently, the Fluent Forms booking integration does not collect separate explicit marketing consent.
+        Before scaling marketing communications (via WhatsApp or Email), an explicit opt-in/consent 
+        mechanism should be added to the booking flow to ensure proper marketing compliance.
+      */}
 
-      <h2>1. The Data We Collect About You</h2>
+      <h2>4. Data Storage and Third-Party Services</h2>
       <p>
-        We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:
+        Booking information is collected and stored through our operational setup using Fluent Forms and WordPress. We engage the following categories of third-party services to fulfill our operations:
       </p>
       <ul>
-        <li><strong>Identity Data:</strong> includes first name, last name, username or similar identifier.</li>
-        <li><strong>Contact Data:</strong> includes billing address, delivery address, email address and telephone numbers.</li>
-        <li><strong>Transaction Data:</strong> includes details about payments to and from you and other details of products and services you have purchased from us.</li>
-      </ul>
-      <p>Note: We do not store or process complete credit card details on our servers. All payments are processed securely through our payment gateway partner.</p>
-
-      <h2>2. How We Use Your Personal Data</h2>
-      <p>
-        We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
-      </p>
-      <ul>
-        <li>Where we need to perform the contract we are about to enter into or have entered into with you (e.g., to process your booking and deliver activity materials).</li>
-        <li>Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.</li>
-        <li>Where we need to comply with a legal obligation.</li>
+        <li><strong>Form and Website Management:</strong> Fluent Forms / WordPress.</li>
+        <li><strong>Payment Processing:</strong> Payment gateway providers handle payment processing during the checkout workflow.</li>
+        <li><strong>Delivery:</strong> Delivery partners, who receive relevant customer delivery information when required to deliver workshop materials.</li>
       </ul>
 
-      <h2>3. Data Security</h2>
+      <h2>5. Payment Data</h2>
       <p>
-        We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way, altered, or disclosed.
+        Payment processing is handled securely through our payment gateway. Kitolit Robotics & AI does not collect or store your complete credit card, debit card, or UPI details on our operational servers.
       </p>
 
-      <h2>4. Contact Us</h2>
+      <h2>6. Marketing Communications</h2>
       <p>
-        If you have any questions about this privacy policy or our privacy practices, please contact us at:
+        We intend to send future promotional communications regarding upcoming workshops and offerings via WhatsApp and/or email using the contact details provided during booking.
+      </p>
+
+      <h2>7. Security</h2>
+      <p>
+        We take reasonable steps to protect the information collected within our operational systems from unauthorized access or disclosure. However, no internet-based platform can guarantee absolute security.
+      </p>
+
+      <h2>8. User Rights and Contact</h2>
+      <p>
+        If you have questions about your information, how it is used, or wish to reach out regarding your data, please contact our support team.
       </p>
       <p>
-        Kitolit Robotics & AI<br />
-        Hyderabad, India<br />
-        Email: support@kitolit.com<br />
-        Phone: +91 9110582315
+        <Link to="/contact">Visit our Contact Us page</Link>
       </p>
     </PolicyLayout>
   );
