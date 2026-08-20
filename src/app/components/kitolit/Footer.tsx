@@ -14,11 +14,14 @@ export function Footer() {
             />
           </Link>
           <p className="text-sm text-[color:var(--muted-foreground)] text-center md:text-left max-w-xs leading-relaxed">
-            Kitolit Robotics & AI<br />
+            Hands-on educational experiences and STEM-focused learning initiatives for young learners.
+          </p>
+          <div className="text-sm text-[color:var(--muted-foreground)] text-center md:text-left leading-relaxed mt-2">
+            <strong>Kitolit Robotics & AI</strong><br />
             Hyderabad, India<br />
             <a href="mailto:support@kitolit.com" className="hover:text-[color:var(--brand-blue)] transition-colors">support@kitolit.com</a><br />
-            <a href="tel:+919110582315" className="hover:text-[color:var(--brand-blue)] transition-colors">+91 9110582315</a>
-          </p>
+            Customer Support: <a href="tel:+919110582315" className="hover:text-[color:var(--brand-blue)] transition-colors">+91 9110582315</a>
+          </div>
         </div>
         
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left">
@@ -39,7 +42,7 @@ export function Footer() {
       </div>
       
       <div className="mx-auto max-w-6xl mt-12 pt-6 border-t border-[#2359A4]/10 text-center text-xs text-[color:var(--muted-foreground)]">
-        &copy; {new Date().getFullYear()} Kitolit Robotics & AI. All rights reserved.
+        &copy; 2026 Kitolit Robotics & AI. All rights reserved.
       </div>
     </footer>
   );
