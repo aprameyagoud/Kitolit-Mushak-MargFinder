@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { BookButton } from "./BookCTA";
 import { FeatureChips } from "./FeatureChips";
@@ -5,7 +6,7 @@ import { Mandala, GaneshaMark, MushakMark } from "./decor";
 import { workshopHighlights } from "./workshopHighlights";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
-export function Hero() {
+export function Hero({ heroCTARef }: { heroCTARef?: RefObject<HTMLDivElement | null> }) {
   const shouldReduceMotion = useReducedMotion();
   return (
     <header className="relative overflow-hidden bg-gradient-to-b from-[#FFF9F2] to-[#FFF0DD]">
@@ -49,7 +50,7 @@ export function Hero() {
               creativity meets joyful discovery.
             </p>
 
-            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <div ref={heroCTARef} className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <BookButton className="w-full sm:w-auto" />
               <div className="flex items-center gap-2 w-full justify-center sm:w-auto sm:justify-start">
                 <span className="text-[color:var(--muted-foreground)] line-through opacity-80 text-sm sm:text-base">₹3000</span>
