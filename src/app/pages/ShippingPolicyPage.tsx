@@ -5,7 +5,7 @@ export function ShippingPolicyPage() {
   return (
     <PolicyLayout title="Shipping Policy">
       <p>
-        This Shipping Policy applies to the physical materials associated with the Eco Tech Ganesha Workshop.
+        This Shipping Policy applies to the physical materials associated with the Eco Tech Ganesha Workshop provided by KITOLIT PRIVATE LIMITED (“Kitolit”, “we”, “us”, or “our”).
       </p>
 
       <h2>1. Delivery of Workshop Materials</h2>

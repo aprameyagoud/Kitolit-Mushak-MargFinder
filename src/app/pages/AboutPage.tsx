@@ -3,9 +3,9 @@ import { Link } from "react-router";
 
 export function AboutPage() {
   return (
-    <PolicyLayout title="About Kitolit Robotics & AI">
+    <PolicyLayout title="About Kitolit">
       <p className="text-xl leading-relaxed text-[color:var(--foreground)] mb-10">
-        We believe that the best way to understand the world of technology is to build it yourself. Kitolit Robotics & AI is focused on providing practical, hands-on learning experiences that bring engineering concepts to life for young learners.
+        We believe that the best way to understand the world of technology is to build it yourself. KITOLIT PRIVATE LIMITED (“Kitolit”, “we”, “us”, or “our”) is focused on providing practical, hands-on learning experiences that bring engineering concepts to life for young learners.
       </p>
 
       <h2>What We Do</h2>

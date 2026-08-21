@@ -17,7 +17,8 @@ export function Footer() {
             Hands-on educational experiences and STEM-focused learning initiatives for young learners.
           </p>
           <div className="text-sm text-[color:var(--muted-foreground)] text-center md:text-left leading-relaxed mt-2">
-            <strong>Kitolit Robotics & AI</strong><br />
+            <strong>KITOLIT PRIVATE LIMITED</strong><br />
+            CIN: U74999TG2017PTC118003<br />
             Hyderabad, India<br />
             <a href="mailto:support@kitolit.com" className="hover:text-[color:var(--brand-blue)] transition-colors">support@kitolit.com</a><br />
             Customer Support: <a href="tel:+919110582315" className="hover:text-[color:var(--brand-blue)] transition-colors">+91 9110582315</a>
@@ -27,7 +28,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-left">
           <div className="flex flex-col gap-3">
             <h4 className="font-semibold text-foreground text-sm tracking-wider uppercase mb-1">Company</h4>
-            <Link to="/about" className="text-[color:var(--muted-foreground)] hover:text-[color:var(--brand-blue)] transition-colors text-sm font-medium">About Kitolit</Link>
+            <Link to="/about" className="text-[color:var(--muted-foreground)] hover:text-[color:var(--brand-blue)] transition-colors text-sm font-medium">About Us</Link>
             <Link to="/contact" className="text-[color:var(--muted-foreground)] hover:text-[color:var(--brand-blue)] transition-colors text-sm font-medium">Contact Us</Link>
             <Link to="/faq" className="text-[color:var(--muted-foreground)] hover:text-[color:var(--brand-blue)] transition-colors text-sm font-medium">FAQ</Link>
           </div>
@@ -41,8 +42,9 @@ export function Footer() {
         </div>
       </div>
       
-      <div className="mx-auto max-w-6xl mt-12 pt-6 border-t border-[#2359A4]/10 text-center text-xs text-[color:var(--muted-foreground)]">
-        &copy; 2026 Kitolit Robotics & AI. All rights reserved.
+      <div className="mx-auto max-w-6xl mt-12 pt-6 border-t border-[#2359A4]/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-center text-xs text-[color:var(--muted-foreground)]">
+        <div>&copy; {new Date().getFullYear()} KITOLIT PRIVATE LIMITED. All rights reserved.</div>
+        <div>CIN: U74999TG2017PTC118003</div>
       </div>
     </footer>
   );

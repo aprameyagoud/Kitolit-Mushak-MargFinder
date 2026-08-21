@@ -5,7 +5,7 @@ export function CancellationRefundPage() {
   return (
     <PolicyLayout title="Cancellation & Refund Policy">
       <p>
-        This policy applies to bookings made for the Eco Tech Ganesha Workshop.
+        This policy applies to bookings made for the Eco Tech Ganesha Workshop provided by KITOLIT PRIVATE LIMITED (“Kitolit”, “we”, “us”, or “our”).
       </p>
 
       <h2>1. Customer Cancellation</h2>

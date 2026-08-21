@@ -5,7 +5,7 @@ export function PrivacyPolicyPage() {
   return (
     <PolicyLayout title="Privacy Policy">
       <p>
-        Kitolit Robotics & AI ("we", "our", or "us") respects your privacy and is committed to protecting the information you share with us. This privacy policy explains how we collect and process information when you use our website or book our workshops.
+        KITOLIT PRIVATE LIMITED (“Kitolit”, “we”, “our”, or “us”) respects your privacy and is committed to protecting the information you share with us. This privacy policy explains how we collect and process information when you use our website or book our workshops.
       </p>
 
       <h2>1. Information Collected</h2>
@@ -70,7 +70,7 @@ export function PrivacyPolicyPage() {
 
       <h2>5. Payment Data</h2>
       <p>
-        Payment processing is handled securely through our payment gateway. Kitolit Robotics & AI does not collect or store your complete credit card, debit card, or UPI details on our operational servers.
+        Payment processing is handled securely through our payment gateway. KITOLIT PRIVATE LIMITED does not collect or store your complete credit card, debit card, or UPI details on our operational servers.
       </p>
 
       <h2>6. Marketing Communications</h2>

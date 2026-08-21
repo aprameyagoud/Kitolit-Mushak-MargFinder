@@ -5,7 +5,7 @@ export function TermsPage() {
   return (
     <PolicyLayout title="Terms & Conditions">
       <p>
-        These Terms & Conditions apply to the Eco Tech Ganesha Workshop provided by Kitolit Robotics & AI.
+        These Terms & Conditions apply to the Eco Tech Ganesha Workshop provided by KITOLIT PRIVATE LIMITED (“Kitolit”, “we”, “us”, or “our”).
       </p>
 
       <h2>1. Workshop Booking</h2>

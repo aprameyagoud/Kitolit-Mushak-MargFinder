@@ -1,6 +1,6 @@
 # 🪔 Eco Tech Ganesha Workshop Landing Page
 
-A premium, responsive React landing page built for **Kitolit Robotics & AI** to promote the **Eco Tech Ganesha Workshop**.
+A premium, responsive React landing page built for **KITOLIT PRIVATE LIMITED** to promote the **Eco Tech Ganesha Workshop**.
 
 The website is designed to convert Meta/Instagram ad traffic into workshop registrations by providing an engaging, festive, and trust-building experience for parents.
 
@@ -191,6 +191,6 @@ This project follows a component-based architecture with emphasis on:
 
 ## 📄 License
 
-Private project developed for **Kitolit Robotics & AI**.
+Private project developed for **KITOLIT PRIVATE LIMITED**.
 
 Unauthorized distribution or commercial reuse is prohibited.

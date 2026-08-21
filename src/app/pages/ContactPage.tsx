@@ -12,7 +12,8 @@ export function ContactPage() {
           <h2 className="mt-0">Contact Details</h2>
           <div className="space-y-4">
             <div>
-              <strong>Kitolit Robotics & AI</strong>
+              <strong>KITOLIT PRIVATE LIMITED</strong><br />
+              <span>CIN: U74999TG2017PTC118003</span>
             </div>
             <div>
               <strong>Customer Support:</strong><br />
