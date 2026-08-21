@@ -3,14 +3,14 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { SectionHeading } from "./decor";
 
 const photos = [
-  { src: "/images/gallery_1.png", alt: "Young Indian girl painting her Eco Tech Ganesha idol with vibrant colors", span: "row-span-2" },
-  { src: "/images/gallery_2.png", alt: "Indian boy following live guided online workshop on his laptop", span: "" },
-  { src: "/images/gallery_3.png", alt: "Indian siblings assembling their Eco Tech Ganesha kit together", span: "" },
-  { src: "/images/gallery_4.png", alt: "Proud Indian girl showing her completed Magical MushakBot companion", span: "row-span-2" },
-  { src: "/images/gallery_5.png", alt: "Close-up of child painting intricate festive details on Eco Tech Ganesha", span: "" },
-  { src: "/images/gallery_6.png", alt: "Mother and child unboxing the festive activity kit", span: "" },
-  { src: "/images/gallery_7.png", alt: "Young girl following interactive live video session on tablet", span: "" },
-  { src: "/images/video_thumb.png", alt: "Group of happy Indian children crafting together during the session", span: "" },
+  { src: "/images/gallery_1.jpg", alt: "Young Indian child happily assembling the physical Eco Tech Ganesha craft", span: "row-span-2" },
+  { src: "/images/gallery_2.jpg", alt: "Indian child joyfully playing with the Magical MushakBot robot toy", span: "" },
+  { src: "/images/gallery_3.jpg", alt: "Smiling Indian girl proudly holding her assembled Eco Tech Ganesha", span: "" },
+  { src: "/images/gallery_4.jpg", alt: "Joyful Indian boy proudly showing his completed Magical MushakBot", span: "row-span-2" },
+  { src: "/images/gallery_5.jpg", alt: "Indian parent and child bonding while assembling the Ganesha kit", span: "" },
+  { src: "/images/gallery_6.jpg", alt: "Child following an online guided workshop while building the craft", span: "" },
+  { src: "/images/gallery_7.jpg", alt: "Close-up of child's hands assembling the Magical MushakBot components", span: "" },
+  { src: "/images/gallery_8.jpg", alt: "Happy Indian family celebrating their completed festive craft creations", span: "" },
 ];
 
 export function Gallery() {

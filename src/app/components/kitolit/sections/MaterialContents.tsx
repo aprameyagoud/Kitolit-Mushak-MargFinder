@@ -31,16 +31,24 @@ export function MaterialContents() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <GaneshaMark className="w-40 drop-shadow-md sm:w-48" />
+                <img 
+                  src="/images/ganesha_artwork.jpg" 
+                  alt="Eco Tech Ganesha Kit Parts" 
+                  className="w-40 sm:w-48 h-auto object-contain rounded-2xl shadow-lg border border-white/60" 
+                />
               </motion.div>
-              <div className="my-2 h-px w-3/4 bg-gradient-to-r from-transparent via-[color:var(--border)] to-transparent" />
+              <div className="my-4 h-px w-3/4 bg-gradient-to-r from-transparent via-[color:var(--border)] to-transparent" />
               <motion.div
                 initial={{ y: 14, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <MushakMark className="w-48 drop-shadow-md sm:w-56" />
+                <img 
+                  src="/images/mushakbot_artwork.jpg" 
+                  alt="Magical MushakBot Parts" 
+                  className="w-48 sm:w-56 h-auto object-contain rounded-2xl shadow-lg border border-white/60" 
+                />
               </motion.div>
               <span className="mt-6 rounded-full border border-white/60 bg-white px-5 py-2 text-sm font-medium text-[color:var(--muted-foreground)] shadow-sm">
                 All parts pre-measured & labelled
