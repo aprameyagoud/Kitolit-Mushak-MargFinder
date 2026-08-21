@@ -1,4 +1,10 @@
 import { useState, useEffect } from "react";
+import {
+  WORDPRESS_FORM_URL,
+  TRUSTED_MESSAGE_ORIGINS,
+  EXPECTED_MESSAGE_TYPES,
+  IFRAME_HEIGHT_LIMITS,
+} from "../../config/siteConfig";
 import confetti from "canvas-confetti";
 import { Button } from "../ui/button";
 import {
@@ -206,6 +212,20 @@ function ProcessingPayment() {
 
 /* ─────────────────────────────────────────────
    STATE: success
+   ─────────────────────────────────────────────
+   IMPORTANT — Payment Verification Architecture Note:
+
+   This "success" screen is a UI placeholder for the future payment flow.
+   It currently displays mock booking details (hardcoded Booking ID, amount).
+
+   When the Razorpay backend is implemented:
+   1. The "success" state MUST only be set after the backend confirms
+      payment verification (Razorpay signature check).
+   2. The booking ID and amount displayed MUST come from the backend response.
+   3. A frontend-only state transition to "success" must NEVER be treated
+      as proof of payment.
+   4. The "preparing" state should call the backend to create a Razorpay order.
+   5. The "processing" state should be shown while the backend verifies payment.
    ───────────────────────────────────────────── */
 function BookingSuccess({ onClose }: { onClose: () => void }) {
   return (
@@ -367,6 +387,7 @@ export function BookButton({
 }) {
   const [open, setOpen] = useState(false);
   const [bookingState, setBookingState] = useState<BookingState>("form");
+  const [iframeHeight, setIframeHeight] = useState(700);
 
   const isFormState = bookingState === "form";
 
@@ -383,18 +404,47 @@ export function BookButton({
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (
-        event.data?.type === "FLUENT_FORM_SUCCESS"
-      ) {
-        setBookingState("preparing");
+      // Security: Reject messages from untrusted origins.
+      // Only the configured WordPress domain (and localhost in dev) are accepted.
+      if (!TRUSTED_MESSAGE_ORIGINS.includes(event.origin)) {
+        return;
+      }
+
+      // Validate message structure: must be a non-null object with a string type
+      const data = event.data;
+      if (data == null || typeof data !== "object" || typeof data.type !== "string") {
+        return;
+      }
+
+      switch (data.type) {
+        case EXPECTED_MESSAGE_TYPES.FORM_SUCCESS:
+          // Only transition from "form" state — prevents arbitrary re-triggering
+          // from other states. Future: this should trigger a backend call to
+          // create a Razorpay order, not just a UI state change.
+          setBookingState((current) =>
+            current === "form" ? "preparing" : current
+          );
+          break;
+
+        case EXPECTED_MESSAGE_TYPES.FORM_HEIGHT: {
+          // Validate height as a reasonable numeric value before applying
+          const height = Number(data.height);
+          if (
+            Number.isFinite(height) &&
+            height >= IFRAME_HEIGHT_LIMITS.MIN &&
+            height <= IFRAME_HEIGHT_LIMITS.MAX
+          ) {
+            setIframeHeight(height);
+          }
+          break;
+        }
+
+        // All unrecognized message types are silently ignored
       }
     };
 
     window.addEventListener("message", handleMessage);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
+    return () => window.removeEventListener("message", handleMessage);
   }, []);
 
   return (
@@ -453,11 +503,11 @@ export function BookButton({
                 <div className="w-full overflow-hidden rounded-2xl">
                   {bookingState === "form" && (
                     <iframe
-                      src="https://greenyellow-monkey-581582.hostingersite.com/ganesha-booking-form/"
+                      src={WORDPRESS_FORM_URL}
                       title="Ganesha Workshop Booking"
                       className="block w-full border-0"
                       style={{
-                        height: "700px",
+                        height: `${iframeHeight}px`,
                         width: "100%",
                       }}
                     />
