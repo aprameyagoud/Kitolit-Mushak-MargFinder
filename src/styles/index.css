@@ -4,23 +4,33 @@
 
 /* ── Sticky mobile CTA animations ──────────────────────────────── */
 
-/* One-shot pulse: scale + glow once, then settle.
-   Uses a descendant selector (space, not >) because BookButton renders
-   additional React wrapper elements between the div and the <button>. */
-@keyframes sticky-cta-pulse {
+/* Entry pulse: fires once when the bar first appears (via key remount).
+   Scale + ring glow, settles back to normal. */
+@keyframes sticky-cta-entry-pulse {
   0%   { box-shadow: 0 0 0 0   rgba(238, 64, 53, 0.55); transform: scale(1);    }
   40%  { box-shadow: 0 0 0 10px rgba(238, 64, 53, 0);   transform: scale(1.045); }
   100% { box-shadow: 0 0 0 0   rgba(238, 64, 53, 0);    transform: scale(1);    }
 }
 
-.sticky-cta-pulse button {
-  animation: sticky-cta-pulse 0.65s ease-out both;
-  animation-delay: 0.25s; /* fire after the nav has slid in via CSS transition */
+/* Continuous attention animation: gentle brightness + scale swell, infinite. */
+@keyframes sticky-cta-attention {
+  0%   { filter: brightness(1);    transform: scale(1);     box-shadow: 0 8px 24px rgba(238, 64, 53, 0.3);  }
+  50%  { filter: brightness(1.1);  transform: scale(1.025); box-shadow: 0 12px 32px rgba(238, 64, 53, 0.55); }
+  100% { filter: brightness(1);    transform: scale(1);     box-shadow: 0 8px 24px rgba(238, 64, 53, 0.3);  }
 }
 
-/* Respect user motion preferences */
+/* Entry pulse runs once (reset each appearance via key remount of parent) */
+.sticky-cta-pulse button {
+  animation:
+    sticky-cta-entry-pulse 0.65s ease-out both,
+    sticky-cta-attention   1.8s ease-in-out 0.9s infinite;
+  /* attention starts after entry pulse finishes (0.25s delay + 0.65s duration ≈ 0.9s) */
+}
+
+/* Respect user motion preferences: disable both animations */
 @media (prefers-reduced-motion: reduce) {
   .sticky-cta-pulse button {
     animation: none;
   }
 }
+

@@ -1,14 +1,13 @@
 import { motion } from "motion/react";
-import { Hammer, Palette, CircuitBoard, Package, ScanLine, Cable } from "lucide-react";
+import { Hammer, CircuitBoard, Package, ScanLine, Cable } from "lucide-react";
 import { SectionHeading, Mandala, GaneshaMark, MushakMark } from "../decor";
 
 const parts = [
   { icon: Package, label: "Pre-cut Eco Tech Ganesha parts" },
-  { icon: Palette, label: "Non-toxic festive paints & brush" },
   { icon: CircuitBoard, label: "Magical MushakBot craft body & parts" },
   { icon: ScanLine, label: "Magical path-guided module" },
   { icon: Cable, label: "Child-safe power module & accessories" },
-  { icon: Hammer, label: "Eco-friendly glue, tools & festive stickers" },
+  { icon: Hammer, label: "Craft & assembly accessories, festive stickers" },
 ];
 
 export function MaterialContents() {

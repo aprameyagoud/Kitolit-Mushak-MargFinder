@@ -27,6 +27,7 @@ export function TermsPage() {
         <li>Wood cutouts</li>
         <li>Wheels</li>
         <li>Path</li>
+        <li>Craft & assembly accessories</li>
       </ul>
 
       <h2>6. Online Workshop</h2>

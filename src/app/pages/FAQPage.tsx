@@ -38,12 +38,13 @@ export function FAQPage() {
                   <li>Wood cutouts</li>
                   <li>Wheels</li>
                   <li>Path</li>
+                  <li>Craft & assembly accessories</li>
                 </ul>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="w6" className="border rounded-lg px-4 bg-white">
-              <AccordionTrigger className="text-left font-medium py-4">Are tools included?</AccordionTrigger>
-              <AccordionContent className="pb-4">No separate tools are included.</AccordionContent>
+              <AccordionTrigger className="text-left font-medium py-4">Are tools needed?</AccordionTrigger>
+              <AccordionContent className="pb-4">Basic assembly accessories are provided with the kit, and no complex tools are required.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="w7" className="border rounded-lg px-4 bg-white">
               <AccordionTrigger className="text-left font-medium py-4">What digital resource is included?</AccordionTrigger>

@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "Do we need to buy anything else?",
-    a: "No. Every part — Eco Tech Ganesha pieces, paints, Magical MushakBot companion parts, tools and glue — arrives free in the activity material box before class.",
+    a: "No. All essential parts — Eco Tech Ganesha pieces, Magical MushakBot companion parts, and craft assembly accessories — arrive free in the activity material box before class.",
   },
   {
     q: "Is any prior building or technical experience needed?",
@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "What if my child needs help during the session?",
-    a: "Batches are kept small and our instructors pause to help. You'll also get a recording and support on WhatsApp.",
+    a: "Batches are kept small so our instructors can provide individual attention and pause to help when needed. You'll also have WhatsApp support for any additional assistance.",
   },
 ];
 
