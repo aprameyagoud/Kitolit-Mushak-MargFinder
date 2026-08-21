@@ -9,11 +9,15 @@ import { SectionHeading } from "./decor";
 const faqs = [
   {
     q: "What age group is this for?",
-    a: "The workshop is designed for children aged 6+. Younger kids can join with light parental help during unboxing.",
+    a: "The workshop is designed for children aged 6+. 6-8 Year children can join with light parental help during unboxing.",
   },
   {
     q: "Is it really online and live?",
-    a: "Yes — it's a live, instructor-led group video session. Your child builds alongside the instructor in real time, not a pre-recorded video.",
+    a: "Yes — it's a live, instructor-led group video session. Your child builds alongside the instructor in real time. We will give a pre-recorded video in case the child misses the live class.",
+  },
+  {
+    q: "What happens if the child misses the live session?",
+    a: "We will provide a pre-recorded video of the session so the child can build along at their own pace.",
   },
   {
     q: "Do we need to buy anything else?",
@@ -29,7 +33,7 @@ const faqs = [
   },
   {
     q: "What if my child needs help during the session?",
-    a: "Batches are kept small so our instructors can provide individual attention and pause to help when needed. You'll also have WhatsApp support for any additional assistance.",
+    a: "Batches are kept small so our instructors can provide individual attention and pause to help when needed.",
   },
 ];
 

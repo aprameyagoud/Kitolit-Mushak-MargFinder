@@ -9,7 +9,6 @@ const includes = [
   "Handcrafted Eco Tech Ganesha build",
   "Interactive Magical MushakBot build",
   "Beginner friendly for ages 6+",
-  "Small batches + certificate of completion",
 ];
 
 export function Pricing() {
@@ -31,7 +30,7 @@ export function Pricing() {
           <div className="relative overflow-hidden rounded-[2.5rem] border border-white/80 bg-white/60 p-6 sm:p-12 shadow-[0_40px_80px_-30px_rgba(238,64,53,0.25)] backdrop-blur-xl">
             {/* Soft decorative background in card */}
             <div className="absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-[color:var(--brand-red)] opacity-[0.04] blur-3xl" />
-            
+
             <div className="absolute right-4 top-4 sm:right-6 sm:top-6 flex flex-col items-end gap-1.5">
               <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-3 py-1 sm:px-4 sm:py-1.5 font-bold text-xs sm:text-sm text-white shadow-sm">
                 EARLY BIRD: SAVE ₹1000
