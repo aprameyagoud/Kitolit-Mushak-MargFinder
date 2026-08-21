@@ -16,11 +16,11 @@ export function FAQPage() {
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="w1" className="border rounded-lg px-4 bg-white">
               <AccordionTrigger className="text-left font-medium py-4">What is the Eco Tech Ganesha Workshop?</AccordionTrigger>
-              <AccordionContent className="pb-4">A hands-on workshop experience designed for children aged 6–13, combining creativity and practical activity through the workshop kit and guided online session.</AccordionContent>
+              <AccordionContent className="pb-4">A hands-on workshop experience designed for children aged 6+, combining creativity and practical activity through the workshop kit and guided online session.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="w2" className="border rounded-lg px-4 bg-white">
               <AccordionTrigger className="text-left font-medium py-4">Who is the workshop for?</AccordionTrigger>
-              <AccordionContent className="pb-4">Children aged 6–13.</AccordionContent>
+              <AccordionContent className="pb-4">Children aged 6+.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="w3" className="border rounded-lg px-4 bg-white">
               <AccordionTrigger className="text-left font-medium py-4">Is the workshop online or offline?</AccordionTrigger>

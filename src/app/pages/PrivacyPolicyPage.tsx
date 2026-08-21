@@ -25,7 +25,7 @@ export function PrivacyPolicyPage() {
 
       <h2>2. Children's Information</h2>
       <p>
-        Our workshops are intended for children aged 6–13. Because child information (such as name and age) is collected for participation purposes, we require and expect that all booking information is submitted by a parent or legal guardian on behalf of the child.
+        Our workshops are intended for children aged 6+. Because child information (such as name and age) is collected for participation purposes, we require and expect that all booking information is submitted by a parent or legal guardian on behalf of the child.
       </p>
 
       <h2>3. Purpose of Collection</h2>

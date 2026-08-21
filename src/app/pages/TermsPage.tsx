@@ -12,7 +12,7 @@ export function TermsPage() {
       <p>A booking is subject to successful payment verification.</p>
 
       <h2>2. Age Eligibility</h2>
-      <p>The workshop is intended for children aged 6–13.</p>
+      <p>The workshop is intended for children aged 6+.</p>
 
       <h2>3. Parent / Guardian Responsibility</h2>
       <p>The booking information is expected to be provided by a parent or legal guardian.</p>

@@ -8,7 +8,7 @@ const includes = [
   "Free activity material delivered to your home",
   "Handcrafted Eco Tech Ganesha build",
   "Interactive Magical MushakBot build",
-  "Beginner friendly — ages 6 to 13",
+  "Beginner friendly — ages 6+",
   "Small batches + certificate of completion",
 ];
 

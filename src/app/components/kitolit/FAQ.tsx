@@ -9,7 +9,7 @@ import { SectionHeading } from "./decor";
 const faqs = [
   {
     q: "What age group is this for?",
-    a: "The workshop is designed for children aged 6 to 13. Younger kids can join with light parental help during unboxing.",
+    a: "The workshop is designed for children aged 6+. Younger kids can join with light parental help during unboxing.",
   },
   {
     q: "Is it really online and live?",

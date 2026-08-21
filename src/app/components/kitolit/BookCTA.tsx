@@ -496,7 +496,7 @@ export function BookButton({
                     BOOK YOUR GANESHA WORKSHOP
                   </DialogTitle>
                   <DialogDescription className="text-xs sm:text-sm font-medium text-[#6E6050]">
-                    Live guided online session • Activity material delivered free to your home • Ages 6–13
+                    Live guided online session • Activity material delivered free to your home • Ages 6+
                   </DialogDescription>
                 </DialogHeader>
 
