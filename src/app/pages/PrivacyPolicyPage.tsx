@@ -13,10 +13,11 @@ export function PrivacyPolicyPage() {
         During the workshop booking process, we collect the following information to facilitate your booking and material delivery:
       </p>
       <ul>
-        <li>Parent's name</li>
-        <li>Email address</li>
-        <li>Child's name</li>
-        <li>Child's age</li>
+        <li>Parent/Guardian Name</li>
+        <li>Parent/Guardian Phone Number</li>
+        <li>Email Address</li>
+        <li>Child's Name</li>
+        <li>Child's Age</li>
         <li>Address</li>
         <li>City</li>
         <li>State</li>
@@ -34,12 +35,20 @@ export function PrivacyPolicyPage() {
       </p>
       <ul>
         <li>To process workshop bookings.</li>
-        <li>To communicate booking-related information.</li>
-        <li>To arrange the delivery of applicable workshop materials.</li>
-        <li>To provide customer support.</li>
-        <li>To maintain booking records.</li>
         <li>To process payment-related workflows through our payment provider.</li>
-        <li>To send future workshop or promotional communications.</li>
+        <li>To maintain booking records.</li>
+      </ul>
+      
+      <h3>Use of Parent/Guardian Phone Number</h3>
+      <p>
+        The provided Parent/Guardian Phone Number may be used specifically for:
+      </p>
+      <ul>
+        <li>Booking confirmation and workshop communication</li>
+        <li>Workshop-related updates</li>
+        <li>Customer support</li>
+        <li>WhatsApp support</li>
+        <li>Delivery coordination where applicable</li>
       </ul>
       
       {/* 
