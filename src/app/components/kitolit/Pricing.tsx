@@ -39,8 +39,9 @@ export function Pricing() {
             </div>
             <p className="font-[family:var(--font-display)] text-base sm:text-lg font-medium text-[color:var(--muted-foreground)] mt-6 sm:mt-2">Eco Tech Ganesha Workshop</p>
             <div className="mt-2 sm:mt-3 flex items-end gap-3 sm:gap-4">
-              <span className="relative inline-block text-[color:var(--muted-foreground)] opacity-80 mb-1 sm:mb-2 text-xl sm:text-2xl font-semibold mr-2">
-                <span className="absolute left-[-5%] right-[-5%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 rotate-[20deg] bg-[color:var(--brand-red)] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.1)]"></span>
+              <span className="relative inline-block text-slate-700 mb-1 sm:mb-2 text-2xl sm:text-4xl font-bold mr-3 tracking-tight">
+                <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[4px] sm:h-[5px] -translate-y-1/2 rotate-[22deg] bg-red-500 rounded-full shadow-sm"></span>
+                <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[4px] sm:h-[5px] -translate-y-1/2 -rotate-[22deg] bg-red-500 rounded-full shadow-sm"></span>
                 ₹3000
               </span>
               <span className="font-[family:var(--font-display)] text-5xl sm:text-7xl font-extrabold text-[color:var(--brand-red)]">

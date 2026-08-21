@@ -54,8 +54,9 @@ export function Hero({ heroCTARef }: { heroCTARef?: RefObject<HTMLDivElement | n
               <BookButton className="w-full sm:w-auto" />
               <div className="flex flex-col items-center sm:items-start w-full sm:w-auto mt-2 sm:mt-0">
                 <div className="flex items-center gap-2">
-                  <span className="relative inline-block text-[color:var(--muted-foreground)] opacity-80 text-base sm:text-lg font-semibold mr-1">
-                    <span className="absolute left-[-5%] right-[-5%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 rotate-[20deg] bg-[color:var(--brand-red)] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.1)]"></span>
+                  <span className="relative inline-block text-slate-700 text-xl sm:text-2xl font-bold mr-2 tracking-tight">
+                    <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 rotate-[22deg] bg-red-500 rounded-full shadow-sm"></span>
+                    <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 -rotate-[22deg] bg-red-500 rounded-full shadow-sm"></span>
                     ₹3000
                   </span>
                   <span className="text-3xl font-[family:var(--font-display)] font-extrabold text-[color:var(--brand-blue)] sm:text-4xl">

@@ -26,8 +26,9 @@ export function FinalCTA() {
           <BookButton className="w-full max-w-[280px] sm:max-w-none scale-105 shadow-[0_0_30px_rgba(244,180,0,0.3)] hover:shadow-[0_0_50px_rgba(244,180,0,0.5)] sm:scale-110" />
           <div className="flex flex-col items-center gap-2 sm:items-start text-white mt-4 sm:mt-0">
             <div className="flex items-center gap-2.5 sm:gap-3">
-              <span className="relative inline-block text-white/90 font-semibold text-base sm:text-lg mr-1">
-                <span className="absolute left-[-5%] right-[-5%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 rotate-[20deg] bg-[color:var(--festive-orange)] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.1)]"></span>
+              <span className="relative inline-block text-white text-xl sm:text-2xl font-bold mr-2 tracking-tight">
+                <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 rotate-[22deg] bg-[#ff3333] rounded-full shadow-sm"></span>
+                <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 -rotate-[22deg] bg-[#ff3333] rounded-full shadow-sm"></span>
                 ₹3000
               </span>
               <span className="font-[family:var(--font-display)] text-4xl sm:text-5xl font-bold text-[color:var(--festive-gold)] drop-shadow-md">

@@ -98,8 +98,9 @@ function LandingPage() {
             <div className="flex flex-col">
               <div className="flex items-baseline gap-1.5">
                 <span className="text-xl font-extrabold text-[color:var(--brand-blue)] leading-none">₹2000</span>
-                <span className="relative inline-block text-xs font-semibold text-[color:var(--muted-foreground)] opacity-80 leading-none">
-                  <span className="absolute left-[-5%] right-[-5%] top-1/2 h-[2px] -translate-y-1/2 rotate-[20deg] bg-[color:var(--brand-red)] rounded-full"></span>
+                <span className="relative inline-block text-slate-700 text-sm font-bold leading-none mr-1">
+                  <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[2.5px] -translate-y-1/2 rotate-[22deg] bg-red-500 rounded-full"></span>
+                  <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[2.5px] -translate-y-1/2 -rotate-[22deg] bg-red-500 rounded-full"></span>
                   ₹3000
                 </span>
               </div>
