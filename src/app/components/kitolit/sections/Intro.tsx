@@ -13,8 +13,8 @@ export function Intro() {
     <section className="relative mx-auto max-w-5xl px-5 pt-4 pb-16 sm:pt-8 sm:pb-24">
       <SectionHeading
         eyebrow="What is it?"
-        title={<>One joyful session. Two things they'll be proud of.</>}
-        subtitle="Guidance from Kitolit's instructors over a live video session — no experience needed. Parents just help unbox; kids do the making."
+        title={<>A fun DIY Tech Ganesha workshop for kids!</>}
+        subtitle="A Kitolit instructor will guide your child live, step by step. No experience needed!"
       />
       <div className="mt-10 grid gap-4 sm:mt-16 sm:grid-cols-3">
         {introCards.map(({ icon: Icon, title, description }) => (

@@ -16,8 +16,10 @@ export function Journey() {
     <section className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
       <SectionHeading
         eyebrow="The Journey"
-        title={<>From box to big smiles — in 6 steps</>}
-        subtitle="A clear, kid-paced path so every child finishes both builds during the live session."
+        title={<>Watch It Take Shape — Step by Step</>}
+        subtitle="Start with simple pieces.
+Put them together.
+See your Ganesha come alive."
       />
       <ol className="relative mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
         {steps.map(({ icon: Icon, title, description }, index) => (

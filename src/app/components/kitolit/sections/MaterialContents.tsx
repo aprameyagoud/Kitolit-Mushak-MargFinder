@@ -19,7 +19,7 @@ export function MaterialContents() {
         <SectionHeading
           eyebrow="Free Material"
           title={<>Inside the Activity Material</>}
-          subtitle="Delivered free to your doorstep before the session — everything a child needs, nothing they don't."
+          subtitle="A complete workshop kit, delivered to your doorstep before the session — free of cost."
         />
 
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -31,10 +31,10 @@ export function MaterialContents() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <img 
-                  src="/images/ganesha_artwork.jpg" 
-                  alt="Eco Tech Ganesha Kit Parts" 
-                  className="w-40 sm:w-48 h-auto object-contain rounded-2xl shadow-lg border border-white/60" 
+                <img
+                  src="/images/mushakbot_artwork.jpg"
+                  alt="Magical MushakBot Parts"
+                  className="w-48 sm:w-56 h-auto object-contain rounded-2xl shadow-lg border border-white/60"
                 />
               </motion.div>
               <div className="my-4 h-px w-3/4 bg-gradient-to-r from-transparent via-[color:var(--border)] to-transparent" />
@@ -44,10 +44,10 @@ export function MaterialContents() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <img 
-                  src="/images/mushakbot_artwork.jpg" 
-                  alt="Magical MushakBot Parts" 
-                  className="w-48 sm:w-56 h-auto object-contain rounded-2xl shadow-lg border border-white/60" 
+                <img
+                  src="/images/ganesha_artwork.jpg"
+                  alt="Eco Tech Ganesha Kit Parts"
+                  className="w-40 sm:w-48 h-auto object-contain rounded-2xl shadow-lg border border-white/60"
                 />
               </motion.div>
               <span className="mt-6 rounded-full border border-white/60 bg-white px-5 py-2 text-sm font-medium text-[color:var(--muted-foreground)] shadow-sm">
