@@ -5,7 +5,7 @@ import { SectionHeading } from "../decor";
 const steps = [
   { icon: Package, title: "Unbox the material", description: "Lay out the labelled parts with your child before class." },
   { icon: Route, title: "Join live", description: "Hop onto the guided video session with our instructor." },
-  { icon: Hammer, title: "Build Eco Tech Ganesha", description: "Assemble and paint your Eco Tech Ganesha, step by step." },
+  { icon: Hammer, title: "Build Eco Tech Ganesha", description: "Assemble your Eco Tech Ganesha, step by step." },
   { icon: CircuitBoard, title: "Build Magical MushakBot", description: "Snap together the Magical MushakBot companion — easy, child-safe assembly." },
   { icon: ScanLine, title: "Spark the Magic", description: "Watch your Magical MushakBot magically guide its path for the first time." },
   { icon: PartyPopper, title: "Celebrate!", description: "Show off your Eco Tech Ganesha and Magical MushakBot to the whole family." },
