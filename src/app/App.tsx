@@ -93,8 +93,26 @@ function LandingPage() {
         ].join(" ")}
       >
         {/* key forces a remount each appearance so sticky-cta-pulse reruns */}
-        <div key={pulseKey} className={stickyVisible ? "w-full sticky-cta-pulse" : "w-full"}>
-          <BookButton className="w-full min-h-[48px] py-3 text-base shadow-lg" />
+        <div key={pulseKey} className={stickyVisible ? "w-full sticky-cta-pulse flex flex-col gap-2 max-w-[400px] mx-auto" : "w-full flex flex-col gap-2 max-w-[400px] mx-auto"}>
+          <div className="flex items-center justify-between px-1">
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-xl font-extrabold text-[color:var(--brand-blue)] leading-none">₹2000</span>
+                <span className="relative inline-block text-xs font-semibold text-[color:var(--muted-foreground)] opacity-80 leading-none">
+                  <span className="absolute left-[-5%] right-[-5%] top-1/2 h-[2px] -translate-y-1/2 rotate-[20deg] bg-[color:var(--brand-red)] rounded-full"></span>
+                  ₹3000
+                </span>
+              </div>
+              <span className="text-[9px] font-bold text-[color:var(--brand-red)] flex items-center gap-1 mt-1 tracking-wider uppercase">
+                <span className="animate-pulse size-1.5 rounded-full bg-[color:var(--brand-red)]"></span>
+                Book before Sept 1
+              </span>
+            </div>
+            <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2 py-0.5 text-[9px] font-bold text-white shadow-sm tracking-wider">
+              EARLY BIRD: SAVE ₹1000
+            </span>
+          </div>
+          <BookButton className="w-full min-h-[44px] py-2.5 text-[15px] shadow-md" />
         </div>
       </nav>
     </div>

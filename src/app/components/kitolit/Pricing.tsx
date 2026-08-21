@@ -8,7 +8,7 @@ const includes = [
   "Free activity material delivered to your home",
   "Handcrafted Eco Tech Ganesha build",
   "Interactive Magical MushakBot build",
-  "Beginner friendly — ages 6+",
+  "Beginner friendly for ages 6+",
   "Small batches + certificate of completion",
 ];
 
@@ -32,17 +32,30 @@ export function Pricing() {
             {/* Soft decorative background in card */}
             <div className="absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-[color:var(--brand-red)] opacity-[0.04] blur-3xl" />
             
-            <span className="absolute right-4 top-4 sm:right-6 sm:top-6 rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-3 py-1 sm:px-4 sm:py-1.5 font-bold text-xs sm:text-sm text-white shadow-sm">
-              Save ₹1000
-            </span>
-            <p className="font-[family:var(--font-display)] text-base sm:text-lg font-medium text-[color:var(--muted-foreground)]">Eco Tech Ganesha Workshop</p>
+            <div className="absolute right-4 top-4 sm:right-6 sm:top-6 flex flex-col items-end gap-1.5">
+              <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-3 py-1 sm:px-4 sm:py-1.5 font-bold text-xs sm:text-sm text-white shadow-sm">
+                EARLY BIRD: SAVE ₹1000
+              </span>
+            </div>
+            <p className="font-[family:var(--font-display)] text-base sm:text-lg font-medium text-[color:var(--muted-foreground)] mt-6 sm:mt-2">Eco Tech Ganesha Workshop</p>
             <div className="mt-2 sm:mt-3 flex items-end gap-3 sm:gap-4">
-              <span className="mb-1 sm:mb-2 text-xl sm:text-2xl font-medium text-[color:var(--muted-foreground)] line-through opacity-70">₹3000</span>
+              <span className="relative inline-block text-[color:var(--muted-foreground)] opacity-80 mb-1 sm:mb-2 text-xl sm:text-2xl font-semibold mr-2">
+                <span className="absolute left-[-5%] right-[-5%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 rotate-[20deg] bg-[color:var(--brand-red)] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.1)]"></span>
+                ₹3000
+              </span>
               <span className="font-[family:var(--font-display)] text-5xl sm:text-7xl font-extrabold text-[color:var(--brand-red)]">
                 ₹2000
               </span>
             </div>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base font-semibold text-[color:var(--festive-orange)]">per child • free material + free delivery</p>
+            <div className="mt-2 sm:mt-3 flex flex-col items-start gap-1.5">
+              <p className="text-sm sm:text-base font-semibold text-[color:var(--festive-orange)]">per child • free material + free delivery</p>
+              <div className="flex items-center gap-1.5 rounded-full bg-[color:var(--festive-gold)]/20 px-3 py-1 border border-[color:var(--festive-gold)]/50 shadow-sm mt-1">
+                <span className="animate-pulse size-2 rounded-full bg-[color:var(--brand-red)]"></span>
+                <span className="text-xs font-bold text-[color:var(--brand-red)] tracking-wider uppercase">
+                  Book before September 1
+                </span>
+              </div>
+            </div>
 
             <ul className="mt-8 sm:mt-10 space-y-3 sm:space-y-4">
               {includes.map((item) => (

@@ -36,7 +36,7 @@ export function Hero({ heroCTARef }: { heroCTARef?: RefObject<HTMLDivElement | n
             transition={{ duration: 0.6 }}
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-festive-gold/20 px-4 py-1.5 text-xs font-semibold text-[color:var(--festive-orange)] sm:text-sm">
-              🪔 This Ganesh Chaturthi — Make, Don't Just Buy
+              🪔 This Ganesh Chaturthi, Make, Don't Just Buy
             </span>
             <h1 className="mt-4 sm:mt-5 text-[clamp(2.25rem,8vw,4rem)] leading-[1.08] tracking-tight text-foreground font-[family:var(--font-display)] font-extrabold">
               Eco Tech Ganesha{" "}
@@ -46,20 +46,31 @@ export function Hero({ heroCTARef }: { heroCTARef?: RefObject<HTMLDivElement | n
             <p className="mt-4 text-base leading-relaxed text-[color:var(--muted-foreground)] sm:mt-5 sm:text-lg sm:max-w-lg">
               A live, guided online session where children craft a festive{" "}
               <strong className="text-foreground">Eco Tech Ganesha</strong> and build an
-              interactive <strong className="text-foreground">Magical MushakBot</strong> companion —
-              creativity meets joyful discovery.
+              interactive <strong className="text-foreground">Magical MushakBot</strong> companion. 
+              It's where creativity meets joyful discovery!
             </p>
 
             <div ref={heroCTARef} className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <BookButton className="w-full sm:w-auto" />
-              <div className="flex items-center gap-2 w-full justify-center sm:w-auto sm:justify-start">
-                <span className="text-[color:var(--muted-foreground)] line-through opacity-80 text-sm sm:text-base">₹3000</span>
-                <span className="text-3xl font-[family:var(--font-display)] font-extrabold text-[color:var(--brand-blue)] sm:text-4xl">
-                  ₹2000
-                </span>
-                <span className="rounded-full bg-[color:var(--brand-red)] px-2.5 py-0.5 text-xs font-bold text-white shadow-sm">
-                  Save ₹1000
-                </span>
+              <div className="flex flex-col items-center sm:items-start w-full sm:w-auto mt-2 sm:mt-0">
+                <div className="flex items-center gap-2">
+                  <span className="relative inline-block text-[color:var(--muted-foreground)] opacity-80 text-base sm:text-lg font-semibold mr-1">
+                    <span className="absolute left-[-5%] right-[-5%] top-1/2 h-[3px] sm:h-[4px] -translate-y-1/2 rotate-[20deg] bg-[color:var(--brand-red)] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.1)]"></span>
+                    ₹3000
+                  </span>
+                  <span className="text-3xl font-[family:var(--font-display)] font-extrabold text-[color:var(--brand-blue)] sm:text-4xl">
+                    ₹2000
+                  </span>
+                  <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2.5 py-0.5 text-xs font-bold text-white shadow-sm ml-1">
+                    EARLY BIRD: SAVE ₹1000
+                  </span>
+                </div>
+                <div className="mt-1.5 flex items-center gap-1.5 rounded-full bg-[color:var(--festive-gold)]/20 px-3 py-1 border border-[color:var(--festive-gold)]/50 shadow-sm">
+                  <span className="animate-pulse size-2 rounded-full bg-[color:var(--brand-red)]"></span>
+                  <span className="text-[11px] font-bold text-[color:var(--brand-red)] tracking-wider uppercase">
+                    Book before September 1
+                  </span>
+                </div>
               </div>
             </div>
 
