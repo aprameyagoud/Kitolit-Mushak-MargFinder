@@ -10,7 +10,7 @@ const introCards = [
 
 export function Intro() {
   return (
-    <section className="relative mx-auto max-w-5xl px-5 py-16 sm:py-24">
+    <section className="relative mx-auto max-w-5xl px-5 pt-4 pb-16 sm:pt-8 sm:pb-24">
       <SectionHeading
         eyebrow="What is it?"
         title={<>One joyful session. Two things they'll be proud of.</>}

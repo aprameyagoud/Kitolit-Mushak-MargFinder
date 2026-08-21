@@ -62,8 +62,8 @@ function LandingPage() {
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background text-foreground antialiased pb-24 sm:pb-0">
       <main>
         <Hero heroCTARef={heroCTARef} />
-        <Intro />
         <VideoPlaceholder />
+        <Intro />
         <MaterialContents />
         <Journey />
         <Gallery />

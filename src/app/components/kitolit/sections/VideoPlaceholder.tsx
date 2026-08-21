@@ -3,8 +3,9 @@ import { Mandala } from "../decor";
 
 export function VideoPlaceholder() {
   return (
-    <section className="relative mx-auto max-w-4xl px-5 pb-16 sm:pb-24">
-      <figure className="relative aspect-video w-full overflow-hidden rounded-[2rem] bg-slate-900 shadow-2xl sm:rounded-[2.5rem]">
+    <section className="relative w-full bg-gradient-to-b from-[#FFF0DD] to-transparent">
+      <div className="relative mx-auto max-w-4xl px-5 pt-16 pb-16 sm:pt-24 sm:pb-24">
+        <figure className="relative aspect-video w-full overflow-hidden rounded-[2rem] bg-slate-900 shadow-2xl sm:rounded-[2.5rem]">
         <ImageWithFallback
           src="/images/video_thumb.png"
           alt="Indian children crafting Eco Tech Ganesha together during workshop"
@@ -26,6 +27,7 @@ export function VideoPlaceholder() {
           <p className="mt-2 text-sm text-white/70 sm:text-base">Promo video placeholder</p>
         </div>
       </figure>
+      </div>
     </section>
   );
 }
