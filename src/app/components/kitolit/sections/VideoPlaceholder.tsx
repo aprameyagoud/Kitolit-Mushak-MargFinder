@@ -18,8 +18,8 @@ export function VideoPlaceholder() {
               onClick={() => setIsPlaying(true)}
             >
               <ImageWithFallback
-                src="/images/video_thumb.png"
-                alt="Indian children crafting Eco Tech Ganesha together during workshop"
+                src="/images/video_thumb.jpg"
+                alt="Make Your Own Tech Ganesha Workshop Poster"
                 className="absolute inset-0 h-full w-full object-cover sm:object-contain opacity-60 transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/40 to-transparent" />
