@@ -2,19 +2,14 @@
  * Centralized site configuration — public values only.
  *
  * ═══════════════════════════════════════════════════════════════════
- *  WORDPRESS URL MIGRATION GUIDE
+ *  WORDPRESS URL CONFIGURATION
  * ═══════════════════════════════════════════════════════════════════
  *
- * When the WordPress site moves from the temporary Hostinger URL
- * to the final production domain, update ONLY the
- * `WORDPRESS_FORM_URL` constant below. The trusted origin used
- * for postMessage validation is derived from it automatically.
+ * Production WordPress / Fluent Forms booking URL:
+ *   https://wpganesha.kitolit.com/ganesha-booking-form/
  *
- * Current (temporary):
- *   https://greenyellow-monkey-581582.hostingersite.com/ganesha-booking-form/
- *
- * Future (production):
- *   https://wp.ganesha.kitolit.com/ganesha-booking-form/
+ * The trusted origin used for postMessage validation is derived
+ * from WORDPRESS_FORM_URL automatically.
  *
  * ═══════════════════════════════════════════════════════════════════
  *  SECURITY NOTICE
@@ -37,7 +32,7 @@
 
 /** Full URL of the WordPress/Fluent Forms booking page loaded in the iframe. */
 export const WORDPRESS_FORM_URL =
-  "https://greenyellow-monkey-581582.hostingersite.com/ganesha-booking-form/";
+  "https://wpganesha.kitolit.com/ganesha-booking-form/";
 
 /**
  * Trusted origin(s) for postMessage validation.
@@ -51,8 +46,6 @@ export const WORDPRESS_FORM_URL =
  */
 export const TRUSTED_MESSAGE_ORIGINS: readonly string[] = [
   new URL(WORDPRESS_FORM_URL).origin,
-  // Uncomment when migrating to the final production WordPress domain:
-  // "https://wp.ganesha.kitolit.com",
   ...(import.meta.env.DEV
     ? ["http://localhost:3000", "http://localhost:5173", "http://127.0.0.1:5173"]
     : []),

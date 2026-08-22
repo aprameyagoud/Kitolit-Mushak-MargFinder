@@ -72,20 +72,12 @@ Content-Security-Policy:
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: https:;
   font-src 'self' https://fonts.gstatic.com;
-  frame-src https://greenyellow-monkey-581582.hostingersite.com;
+  frame-src https://wpganesha.kitolit.com;
   connect-src 'self';
   object-src 'none';
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
-```
-
-**IMPORTANT — When migrating the WordPress URL:**
-
-Update the `frame-src` directive to match the new WordPress domain:
-
-```
-frame-src https://wp.ganesha.kitolit.com;
 ```
 
 **IMPORTANT — When adding Razorpay:**
@@ -106,7 +98,7 @@ of integration for the exact domains required.
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; frame-src https://greenyellow-monkey-581582.hostingersite.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; frame-src https://wpganesha.kitolit.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 ```
 
 ### Vercel (`vercel.json`)
