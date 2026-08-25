@@ -379,7 +379,7 @@ function PaymentIncomplete({
 export function BookButton({
   className = "",
   size = "lg",
-  label = "Book the Workshop",
+  label = "SECURE YOUR SPOT",
 }: {
   className?: string;
   size?: "lg" | "default";
