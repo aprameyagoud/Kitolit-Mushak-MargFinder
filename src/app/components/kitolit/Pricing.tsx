@@ -32,8 +32,8 @@ export function Pricing() {
             <div className="absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-[color:var(--brand-red)] opacity-[0.04] blur-3xl" />
 
             <div className="absolute right-4 top-4 sm:right-6 sm:top-6 flex flex-col items-end gap-1.5">
-              <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-3 py-1 sm:px-4 sm:py-1.5 font-bold text-xs sm:text-sm text-white shadow-sm">
-                EARLY BIRD: SAVE ₹1000
+              <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-3 py-1 sm:px-4 sm:py-1.5 font-bold text-xs sm:text-sm text-white shadow-sm animate-pulse">
+                FLASH SALE: SAVE ₹1000
               </span>
             </div>
             <p className="font-[family:var(--font-display)] text-base sm:text-lg font-medium text-[color:var(--muted-foreground)] mt-6 sm:mt-2">Eco Tech Ganesha Workshop</p>
@@ -52,7 +52,7 @@ export function Pricing() {
               <div className="flex items-center gap-1.5 rounded-full bg-[color:var(--festive-gold)]/20 px-3 py-1 border border-[color:var(--festive-gold)]/50 shadow-sm mt-1">
                 <span className="animate-pulse size-2 rounded-full bg-[color:var(--brand-red)]"></span>
                 <span className="text-xs font-bold text-[color:var(--brand-red)] tracking-wider uppercase">
-                  Book before September 1
+                  LIMITED-TIME FLASH SALE
                 </span>
               </div>
             </div>
@@ -69,7 +69,7 @@ export function Pricing() {
             </ul>
 
             <div className="mt-8 sm:mt-10">
-              <BookButton className="w-full justify-center py-5 sm:py-6 text-lg sm:text-xl shadow-xl shadow-[color:var(--brand-red)]/20" label="Book the Workshop" />
+              <BookButton className="w-full justify-center py-5 sm:py-6 text-lg sm:text-xl shadow-xl shadow-[color:var(--brand-red)]/20" label="GRAB THE OFFER" />
             </div>
             <p className="mt-4 sm:mt-6 flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm font-medium text-[color:var(--muted-foreground)]">
               <span>🔒 Secure booking</span>

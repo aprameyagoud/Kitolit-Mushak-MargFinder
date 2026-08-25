@@ -36,13 +36,13 @@ export function FinalCTA() {
               </span>
             </div>
             <div className="flex flex-col items-center sm:items-start gap-1">
-              <span className="rounded-full bg-[color:var(--festive-orange)]/20 px-3 py-1 text-xs font-bold text-white border border-[color:var(--festive-orange)]/50 tracking-wide">
-                EARLY BIRD: SAVE ₹1000
+              <span className="rounded-full bg-[color:var(--festive-orange)]/20 px-3 py-1 text-xs font-bold text-white border border-[color:var(--festive-orange)]/50 tracking-wide animate-pulse">
+                FLASH SALE: SAVE ₹1000
               </span>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="animate-pulse size-2 rounded-full bg-[color:var(--festive-gold)]"></span>
                 <span className="text-[11px] font-bold text-[color:var(--festive-gold)] uppercase tracking-wider">
-                  Book before September 1
+                  LIMITED-TIME FLASH SALE
                 </span>
               </div>
             </div>

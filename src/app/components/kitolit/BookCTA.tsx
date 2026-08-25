@@ -379,7 +379,7 @@ function PaymentIncomplete({
 export function BookButton({
   className = "",
   size = "lg",
-  label = "Book the Workshop",
+  label = "GRAB THE OFFER",
 }: {
   className?: string;
   size?: "lg" | "default";

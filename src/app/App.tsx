@@ -106,11 +106,11 @@ function LandingPage() {
               </div>
               <span className="text-[9px] font-bold text-[color:var(--brand-red)] flex items-center gap-1 mt-1 tracking-wider uppercase">
                 <span className="animate-pulse size-1.5 rounded-full bg-[color:var(--brand-red)]"></span>
-                Book before Sept 1
+                LIMITED-TIME FLASH SALE
               </span>
             </div>
-            <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2 py-0.5 text-[9px] font-bold text-white shadow-sm tracking-wider">
-              EARLY BIRD: SAVE ₹1000
+            <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2 py-0.5 text-[9px] font-bold text-white shadow-sm tracking-wider animate-pulse">
+              FLASH SALE: SAVE ₹1000
             </span>
           </div>
           <BookButton className="w-full min-h-[44px] py-2.5 text-[15px] shadow-md" />
