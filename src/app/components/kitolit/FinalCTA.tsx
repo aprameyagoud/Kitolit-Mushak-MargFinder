@@ -32,12 +32,12 @@ export function FinalCTA() {
                 ₹3000
               </span>
               <span className="font-[family:var(--font-display)] text-4xl sm:text-5xl font-bold text-[color:var(--festive-gold)] drop-shadow-md">
-                ₹2000
+                ₹1500
               </span>
             </div>
             <div className="flex flex-col items-center sm:items-start gap-1">
               <span className="rounded-full bg-[color:var(--festive-orange)]/20 px-3 py-1 text-xs font-bold text-white border border-[color:var(--festive-orange)]/50 tracking-wide">
-                EARLY BIRD: SAVE ₹1000
+                EARLY BIRD: SAVE ₹1500
               </span>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="animate-pulse size-2 rounded-full bg-[color:var(--festive-gold)]"></span>

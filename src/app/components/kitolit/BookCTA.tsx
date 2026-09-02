@@ -256,7 +256,7 @@ function BookingSuccess({ onClose }: { onClose: () => void }) {
           </div>
           <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
             <span className="font-medium text-[#7E6E5E]">Amount Paid</span>
-            <span className="font-bold text-emerald-700">₹2000</span>
+            <span className="font-bold text-emerald-700">₹1500</span>
           </div>
           <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
             <span className="font-medium text-[#7E6E5E]">Payment Status</span>

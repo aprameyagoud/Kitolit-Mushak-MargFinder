@@ -60,10 +60,10 @@ export function Hero({ heroCTARef }: { heroCTARef?: RefObject<HTMLDivElement | n
                     ₹3000
                   </span>
                   <span className="text-3xl font-[family:var(--font-display)] font-extrabold text-[color:var(--brand-blue)] sm:text-4xl">
-                    ₹2000
+                    ₹1500
                   </span>
                   <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2.5 py-0.5 text-xs font-bold text-white shadow-sm ml-1">
-                    EARLY BIRD: SAVE ₹1000
+                    EARLY BIRD: SAVE ₹1500
                   </span>
                 </div>
                 <div className="mt-1.5 flex items-center gap-1.5 rounded-full bg-[color:var(--festive-gold)]/20 px-3 py-1 border border-[color:var(--festive-gold)]/50 shadow-sm">

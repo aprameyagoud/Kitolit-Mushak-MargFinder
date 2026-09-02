@@ -97,7 +97,7 @@ function LandingPage() {
           <div className="flex items-center justify-between px-1">
             <div className="flex flex-col">
               <div className="flex items-baseline gap-1.5">
-                <span className="text-xl font-extrabold text-[color:var(--brand-blue)] leading-none">₹2000</span>
+                <span className="text-xl font-extrabold text-[color:var(--brand-blue)] leading-none">₹1500</span>
                 <span className="relative inline-block text-slate-700 text-sm font-bold leading-none mr-1">
                   <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[2.5px] -translate-y-1/2 rotate-[22deg] bg-red-500 rounded-full"></span>
                   <span className="absolute left-[-10%] right-[-10%] top-1/2 h-[2.5px] -translate-y-1/2 -rotate-[22deg] bg-red-500 rounded-full"></span>
@@ -110,7 +110,7 @@ function LandingPage() {
               </span>
             </div>
             <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2 py-0.5 text-[9px] font-bold text-white shadow-sm tracking-wider">
-              EARLY BIRD: SAVE ₹1000
+              EARLY BIRD: SAVE ₹1500
             </span>
           </div>
           <BookButton className="w-full min-h-[44px] py-2.5 text-[15px] shadow-md" />
