@@ -95,6 +95,7 @@ export type BookingFormData = {
 
 export type BookingState =
   | "form"
+  | "checkout"
   | "preparing"
   | "processing"
   | "success"
@@ -199,6 +200,68 @@ function FormInput({
         onChange={onChange}
         className="h-[48px] sm:h-[50px] w-full rounded-xl border border-[#DDCFBD] bg-white px-3.5 text-sm sm:text-base font-medium text-[#23201C] placeholder:text-[#9F9180] shadow-2xs transition-all duration-150 outline-none focus:border-[color:var(--brand-red)] focus:ring-2 focus:ring-[color:var(--brand-red)]/20"
       />
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   STATE: checkout (price breakdown before payment)
+   ───────────────────────────────────────────── */
+function CheckoutSummary({ onProceed }: { onProceed: () => void }) {
+  return (
+    <div className="flex flex-col items-center px-4 py-6 text-center sm:px-6 sm:py-8">
+      <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-blue-50 text-[color:var(--brand-blue)] shadow-inner">
+        <CreditCard className="size-7" />
+      </div>
+
+      <h3 className="mt-4 font-[family:var(--font-display)] text-2xl font-extrabold text-[#23201C]">
+        Order Summary
+      </h3>
+      <p className="mx-auto mt-1 max-w-sm text-xs sm:text-sm leading-relaxed text-[#6E6050]">
+        Review your booking details before payment.
+      </p>
+
+      {/* Price breakdown card */}
+      <div className="mx-auto mt-5 w-full max-w-sm rounded-2xl border border-[#E7D6C1] bg-white p-4 sm:p-5 text-left shadow-md">
+        <div className="space-y-3 text-sm sm:text-base">
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-[#5E5246]">Workshop Price</span>
+            <span className="font-semibold text-[#23201C]">₹1,500</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-[#5E5246]">Delivery</span>
+            <span className="font-semibold text-[#23201C]">₹199</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-[#5E5246]">GST</span>
+            <span className="font-semibold text-[#23201C]">18% applicable</span>
+          </div>
+
+          <div className="border-t-2 border-dashed border-[#E7D6C1] pt-3 mt-1">
+            <div className="flex items-center justify-between">
+              <span className="font-[family:var(--font-display)] text-lg font-extrabold text-[#23201C]">Final Payable</span>
+              <span className="font-[family:var(--font-display)] text-2xl font-extrabold text-[color:var(--brand-red)]">₹2,000</span>
+            </div>
+          </div>
+        </div>
+
+        <p className="mt-3 text-[11px] leading-relaxed text-[#8A7D6C] text-center">
+          Final checkout amount includes delivery and applicable GST. Final amount rounded to ₹2,000.
+        </p>
+      </div>
+
+      <Button
+        onClick={onProceed}
+        className="mt-6 h-12 w-full max-w-sm rounded-xl bg-[color:var(--brand-red)] text-base font-bold text-white shadow-lg hover:bg-[color:var(--brand-red)]/90 cursor-pointer transition-all hover:-translate-y-0.5"
+      >
+        <Lock className="size-4 shrink-0" />
+        Proceed to Pay ₹2,000
+      </Button>
+
+      <div className="mt-3 flex items-center gap-2 text-xs font-medium text-[#7E6E5E]">
+        <ShieldCheck className="size-4 text-emerald-600" />
+        <span>256-bit SSL encrypted • Powered by Razorpay</span>
+      </div>
     </div>
   );
 }
@@ -543,7 +606,7 @@ export function BookButton({
           }
 
           setCustomerData(cleanedCustomer);
-          setBookingState("preparing");
+          setBookingState("checkout");
 
           break;
         }
@@ -782,6 +845,12 @@ export function BookButton({
               {/* Hidden accessible title/description for non-form states */}
               <DialogTitle className="sr-only">Booking Status</DialogTitle>
               <DialogDescription className="sr-only">Booking payment status</DialogDescription>
+
+              {bookingState === "checkout" && (
+                <CheckoutSummary
+                  onProceed={() => setBookingState("preparing")}
+                />
+              )}
 
               {bookingState === "preparing" && <PreparingPayment />}
 
