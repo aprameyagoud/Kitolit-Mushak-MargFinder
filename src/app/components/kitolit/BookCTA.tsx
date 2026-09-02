@@ -793,7 +793,7 @@ export function BookButton({
 
         <DialogContent
           className={`w-full max-w-[calc(100%-1.5rem)] rounded-3xl border border-[#EADCC9] bg-[color:var(--ivory)] p-0 shadow-2xl flex flex-col ${isFormState
-            ? "max-h-[94vh] sm:max-w-xl md:max-w-2xl overflow-hidden"
+            ? "max-h-[94vh] sm:max-w-xl md:max-w-4xl lg:max-w-5xl overflow-hidden"
             : "sm:max-w-md md:max-w-lg h-auto min-h-0 overflow-visible"
             }`}
         >
@@ -801,8 +801,8 @@ export function BookButton({
           {isFormState && (
             <div className="max-h-[92vh] px-4 py-5 sm:px-8 sm:py-7 overflow-y-auto w-full">
               <div className="space-y-6">
-                <DialogHeader className="relative space-y-1.5 text-left border-b border-[#EADCC9]/70 pb-4">
-                  <div className="flex items-center gap-2">
+                <DialogHeader className="relative space-y-1 text-left border-b border-[#EADCC9]/70 pb-4">
+                  <div className="flex items-center gap-2 mb-1">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-festive-gold/25 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-[color:var(--festive-orange)]">
                       🪔 Hands-on Maker Series
                     </span>
@@ -820,20 +820,58 @@ export function BookButton({
                   <DialogDescription className="text-xs sm:text-sm font-medium text-[#6E6050]">
                     Live guided online session • Activity material delivered to your home • Ages 6+
                   </DialogDescription>
+                  <div className="pt-2">
+                    <p className="text-sm sm:text-base font-semibold text-[color:var(--brand-red)]">
+                      Workshop price ₹1,500 + ₹199 delivery + applicable GST. Final checkout amount: ₹2,000.
+                    </p>
+                  </div>
                 </DialogHeader>
 
-                <div className="w-full overflow-hidden rounded-2xl">
-                  {bookingState === "form" && (
-                    <iframe
-                      src={WORDPRESS_FORM_URL}
-                      title="Ganesha Workshop Booking"
-                      className="block w-full border-0"
-                      style={{
-                        height: `${iframeHeight}px`,
-                        width: "100%",
-                      }}
-                    />
-                  )}
+                <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                  {/* FORM (Dominant) */}
+                  <div className="w-full md:flex-1 overflow-hidden rounded-2xl min-w-0 order-2 md:order-1">
+                    {bookingState === "form" && (
+                      <iframe
+                        src={WORDPRESS_FORM_URL}
+                        title="Ganesha Workshop Booking"
+                        className="block w-full border-0"
+                        style={{
+                          height: `${iframeHeight}px`,
+                          width: "100%",
+                        }}
+                      />
+                    )}
+                  </div>
+                  
+                  {/* TOTAL CARD */}
+                  <div className="w-full md:w-64 lg:w-72 shrink-0 h-fit rounded-xl border border-[#E7D6C1] bg-white p-4 md:p-5 shadow-sm order-1 md:order-2 md:sticky md:top-0 mb-4 md:mb-0 z-10 relative">
+                    <h4 className="font-[family:var(--font-display)] text-xs md:text-sm font-extrabold text-[#23201C] mb-2 md:mb-3 tracking-wide">
+                      YOUR TOTAL
+                    </h4>
+                    <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-[#5E5246] font-medium">Workshop</span>
+                        <span className="font-semibold text-[#23201C]">₹1,500</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[#5E5246] font-medium">Delivery</span>
+                        <span className="font-semibold text-[#23201C]">₹199</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[#5E5246] font-medium">GST</span>
+                        <span className="font-semibold text-[#23201C]">18% applicable</span>
+                      </div>
+                      <div className="border-t-2 border-dashed border-[#EADCC9] pt-2 mt-2 flex justify-between items-center">
+                        <span className="font-bold text-[#23201C]">PAYABLE</span>
+                        <span className="font-[family:var(--font-display)] font-extrabold text-lg md:text-xl text-[color:var(--brand-red)]">
+                          ₹2,000
+                        </span>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-[10px] leading-relaxed text-[#8A7D6C]">
+                      Final amount includes delivery and applicable GST.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
