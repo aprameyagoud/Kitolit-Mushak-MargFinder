@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   WORDPRESS_FORM_URL,
   TRUSTED_MESSAGE_ORIGINS,
@@ -35,6 +35,49 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Mandala } from "./decor";
+
+//razorpay
+type RazorpayResponse = {
+  razorpay_payment_id: string;
+  razorpay_order_id: string;
+  razorpay_signature: string;
+};
+
+type RazorpayOptions = {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  prefill: {
+    name: string;
+    email: string;
+    contact: string;
+  };
+  theme?: {
+    color: string;
+  };
+  handler: (response: RazorpayResponse) => void;
+  modal?: {
+    ondismiss?: () => void;
+  };
+};
+
+type RazorpayInstance = {
+  open: () => void;
+  on: (
+    event: string,
+    callback: (response: { error?: unknown }) => void
+  ) => void;
+};
+
+declare global {
+  interface Window {
+    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
+  }
+}
+//razorpayending
 
 const confettiColors = ["#EE4035", "#2359A4", "#F4B400", "#FF8C00", "#10B981"];
 
@@ -227,7 +270,17 @@ function ProcessingPayment() {
    4. The "preparing" state should call the backend to create a Razorpay order.
    5. The "processing" state should be shown while the backend verifies payment.
    ───────────────────────────────────────────── */
-function BookingSuccess({ onClose }: { onClose: () => void }) {
+function BookingSuccess({
+  onClose,
+  paymentData,
+}: {
+  onClose: () => void;
+  paymentData: {
+    paymentId: string;
+    orderId: string;
+    amount: number;
+  };
+}) {
   return (
     <div className="relative overflow-hidden px-4 py-6 text-center sm:px-6 sm:py-8">
       <Mandala className="pointer-events-none absolute -right-16 -top-16 size-48 text-[color:var(--festive-gold)] opacity-20" />
@@ -252,11 +305,15 @@ function BookingSuccess({ onClose }: { onClose: () => void }) {
         <div className="space-y-2 text-xs sm:text-sm">
           <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
             <span className="font-medium text-[#7E6E5E]">Booking ID</span>
-            <span className="font-bold text-[#23201C]">#MM-2026-0847</span>
+            <span className="font-bold text-[#23201C]">
+              {paymentData.orderId}
+            </span>
           </div>
           <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
             <span className="font-medium text-[#7E6E5E]">Amount Paid</span>
-            <span className="font-bold text-emerald-700">₹1500</span>
+            <span className="font-bold text-emerald-700">
+              ₹{paymentData.amount / 100}
+            </span>
           </div>
           <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
             <span className="font-medium text-[#7E6E5E]">Payment Status</span>
@@ -389,6 +446,20 @@ export function BookButton({
   const [bookingState, setBookingState] = useState<BookingState>("form");
   const [iframeHeight, setIframeHeight] = useState(700);
 
+  const [customerData, setCustomerData] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+  } | null>(null);
+
+  const [paymentData, setPaymentData] = useState<{
+    paymentId: string;
+    orderId: string;
+    amount: number;
+  } | null>(null);
+
+  const paymentStartedRef = useRef(false);
+
   const isFormState = bookingState === "form";
 
   // Dev testing listener
@@ -404,31 +475,66 @@ export function BookButton({
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      // Security: Reject messages from untrusted origins.
-      // Only the configured WordPress domain (and localhost in dev) are accepted.
+      // Only accept messages from our configured WordPress origin.
       if (!TRUSTED_MESSAGE_ORIGINS.includes(event.origin)) {
         return;
       }
 
-      // Validate message structure: must be a non-null object with a string type
       const data = event.data;
-      if (data == null || typeof data !== "object" || typeof data.type !== "string") {
+
+      if (
+        data == null ||
+        typeof data !== "object" ||
+        typeof data.type !== "string"
+      ) {
         return;
       }
 
       switch (data.type) {
-        case EXPECTED_MESSAGE_TYPES.FORM_SUCCESS:
-          // Only transition from "form" state — prevents arbitrary re-triggering
-          // from other states. Future: this should trigger a backend call to
-          // create a Razorpay order, not just a UI state change.
-          setBookingState((current) =>
-            current === "form" ? "preparing" : current
-          );
+        case EXPECTED_MESSAGE_TYPES.FORM_SUCCESS: {
+          if (bookingState !== "form") {
+            return;
+          }
+
+          const customer = data.customer;
+
+          if (
+            !customer ||
+            typeof customer !== "object" ||
+            typeof customer.name !== "string" ||
+            typeof customer.email !== "string" ||
+            typeof customer.phone !== "string"
+          ) {
+            console.error("Kitolit: Invalid customer data received.");
+            setBookingState("failed");
+            return;
+          }
+
+          const cleanedCustomer = {
+            name: customer.name.trim(),
+            email: customer.email.trim(),
+            phone: customer.phone.trim(),
+          };
+
+          if (
+            !cleanedCustomer.name ||
+            !cleanedCustomer.email ||
+            !cleanedCustomer.phone
+          ) {
+            console.error("Kitolit: Customer details are incomplete.");
+            setBookingState("failed");
+            return;
+          }
+
+          setCustomerData(cleanedCustomer);
+          setBookingState("preparing");
+
           break;
+        }
 
         case EXPECTED_MESSAGE_TYPES.FORM_HEIGHT: {
-          // Validate height as a reasonable numeric value before applying
           const height = Number(data.height);
+
           if (
             Number.isFinite(height) &&
             height >= IFRAME_HEIGHT_LIMITS.MIN &&
@@ -436,16 +542,174 @@ export function BookButton({
           ) {
             setIframeHeight(height);
           }
+
           break;
         }
-
-        // All unrecognized message types are silently ignored
       }
     };
 
     window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, [bookingState]);
+  const startPayment = async () => {
+    if (!customerData || paymentStartedRef.current) {
+      return;
+    }
+    useEffect(() => {
+      if (bookingState === "preparing" && customerData) {
+        startPayment();
+      }
+    }, [bookingState, customerData]);
+
+    paymentStartedRef.current = true;
+    setBookingState("preparing");
+
+
+    try {
+      const wordpressOrigin = new URL(WORDPRESS_FORM_URL).origin;
+
+      // Load Razorpay Checkout if it is not already loaded.
+      if (!window.Razorpay) {
+        await new Promise<void>((resolve, reject) => {
+          const existingScript = document.querySelector(
+            'script[src="https://checkout.razorpay.com/v1/checkout.js"]'
+          );
+
+          if (existingScript) {
+            existingScript.addEventListener("load", () => resolve());
+            existingScript.addEventListener("error", () =>
+              reject(new Error("Unable to load Razorpay Checkout."))
+            );
+            return;
+          }
+
+          const script = document.createElement("script");
+          script.src = "https://checkout.razorpay.com/v1/checkout.js";
+          script.async = true;
+
+          script.onload = () => resolve();
+          script.onerror = () =>
+            reject(new Error("Unable to load Razorpay Checkout."));
+
+          document.body.appendChild(script);
+        });
+      }
+
+      // Ask WordPress to create the Razorpay order.
+      const orderResponse = await fetch(
+        `${wordpressOrigin}/wp-json/kitolit/v1/create-order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: customerData.name,
+            email: customerData.email,
+            phone: customerData.phone,
+          }),
+        }
+      );
+
+      const orderData = await orderResponse.json();
+
+      if (
+        !orderResponse.ok ||
+        !orderData.success ||
+        !orderData.order_id ||
+        !orderData.key_id ||
+        !orderData.amount
+      ) {
+        throw new Error(
+          orderData.message || "Unable to create payment order."
+        );
+      }
+
+      setBookingState("processing");
+
+      const razorpay = new window.Razorpay({
+        key: orderData.key_id,
+        amount: orderData.amount,
+        currency: orderData.currency || "INR",
+        name: "Kitolit",
+        description: "Kitolit Robotics Workshop",
+        order_id: orderData.order_id,
+
+        prefill: {
+          name: customerData.name,
+          email: customerData.email,
+          contact: customerData.phone,
+        },
+
+        theme: {
+          color: "#EE4035",
+        },
+
+        handler: async (response) => {
+          try {
+            setBookingState("processing");
+
+            const verifyResponse = await fetch(
+              `${wordpressOrigin}/wp-json/kitolit/v1/verify-payment`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                }),
+              }
+            );
+
+            const verification = await verifyResponse.json();
+
+            if (!verifyResponse.ok || !verification.success) {
+              throw new Error(
+                verification.message || "Payment verification failed."
+              );
+            }
+
+            setPaymentData({
+              paymentId: verification.payment_id,
+              orderId: verification.order_id,
+              amount: verification.customer?.amount || orderData.amount,
+            });
+
+            setBookingState("success");
+          } catch (error) {
+            console.error("Kitolit: Payment verification failed.", error);
+            setBookingState("failed");
+          } finally {
+            paymentStartedRef.current = false;
+          }
+        },
+
+        modal: {
+          ondismiss: () => {
+            paymentStartedRef.current = false;
+            setBookingState("incomplete");
+          },
+        },
+      });
+
+      razorpay.on("payment.failed", () => {
+        paymentStartedRef.current = false;
+        setBookingState("failed");
+      });
+
+      razorpay.open();
+    } catch (error) {
+      console.error("Kitolit: Payment initialization failed.", error);
+      paymentStartedRef.current = false;
+      setBookingState("failed");
+    }
+  };
 
   return (
     <>
@@ -469,11 +733,10 @@ export function BookButton({
         </DialogTrigger>
 
         <DialogContent
-          className={`w-full max-w-[calc(100%-1.5rem)] rounded-3xl border border-[#EADCC9] bg-[color:var(--ivory)] p-0 shadow-2xl flex flex-col ${
-            isFormState
+          className={`w-full max-w-[calc(100%-1.5rem)] rounded-3xl border border-[#EADCC9] bg-[color:var(--ivory)] p-0 shadow-2xl flex flex-col ${isFormState
               ? "max-h-[94vh] sm:max-w-xl md:max-w-2xl overflow-hidden"
               : "sm:max-w-md md:max-w-lg h-auto min-h-0 overflow-visible"
-          }`}
+            }`}
         >
           {/* ── FORM STATE: iframe with scroll ── */}
           {isFormState && (
@@ -488,7 +751,7 @@ export function BookButton({
                       Free Delivery
                     </span>
                   </div>
-                  <DialogTitle 
+                  <DialogTitle
                     className="font-[family:var(--font-display)] text-2xl sm:text-3xl font-extrabold tracking-tight text-[#23201C]"
                     onDoubleClick={() => import.meta.env.DEV && setBookingState("preparing")}
                     title={import.meta.env.DEV ? "DEV: Double-click to simulate form submission" : undefined}
@@ -530,23 +793,39 @@ export function BookButton({
 
               {bookingState === "success" && (
                 <BookingSuccess
+                  paymentData={
+                    paymentData || {
+                      paymentId: "",
+                      orderId: "",
+                      amount: 150000,
+                    }
+                  }
                   onClose={() => {
                     setOpen(false);
                     setBookingState("form");
+                    setCustomerData(null);
+                    setPaymentData(null);
+                    paymentStartedRef.current = false;
                   }}
                 />
               )}
 
               {bookingState === "failed" && (
                 <PaymentFailed
-                  onRetry={() => setBookingState("preparing")}
+                  onRetry={() => {
+                    paymentStartedRef.current = false;
+                    startPayment();
+                  }}
                   onBackToBooking={() => setBookingState("form")}
                 />
               )}
 
               {bookingState === "incomplete" && (
                 <PaymentIncomplete
-                  onCompletePayment={() => setBookingState("preparing")}
+                  onCompletePayment={() => {
+                    paymentStartedRef.current = false;
+                    startPayment();
+                  }}
                   onCancelBooking={() => {
                     setOpen(false);
                     setBookingState("form");
