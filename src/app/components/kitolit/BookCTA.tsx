@@ -576,23 +576,42 @@ export function BookButton({
         await new Promise<void>((resolve, reject) => {
           const existingScript = document.querySelector(
             'script[src="https://checkout.razorpay.com/v1/checkout.js"]'
-          );
+          ) as HTMLScriptElement | null;
 
           if (existingScript) {
-            existingScript.addEventListener("load", () => resolve());
-            existingScript.addEventListener("error", () =>
-              reject(new Error("Unable to load Razorpay Checkout."))
-            );
+            const checkRazorpay = () => {
+              if (window.Razorpay) {
+                resolve();
+              } else {
+                setTimeout(checkRazorpay, 100);
+              }
+            };
+
+            checkRazorpay();
+
+            existingScript.addEventListener("error", () => {
+              reject(new Error("Unable to load Razorpay Checkout."));
+            });
+
             return;
           }
 
           const script = document.createElement("script");
+
           script.src = "https://checkout.razorpay.com/v1/checkout.js";
           script.async = true;
 
-          script.onload = () => resolve();
-          script.onerror = () =>
+          script.onload = () => {
+            if (window.Razorpay) {
+              resolve();
+            } else {
+              reject(new Error("Razorpay Checkout failed to initialize."));
+            }
+          };
+
+          script.onerror = () => {
             reject(new Error("Unable to load Razorpay Checkout."));
+          };
 
           document.body.appendChild(script);
         });
@@ -734,8 +753,8 @@ export function BookButton({
 
         <DialogContent
           className={`w-full max-w-[calc(100%-1.5rem)] rounded-3xl border border-[#EADCC9] bg-[color:var(--ivory)] p-0 shadow-2xl flex flex-col ${isFormState
-              ? "max-h-[94vh] sm:max-w-xl md:max-w-2xl overflow-hidden"
-              : "sm:max-w-md md:max-w-lg h-auto min-h-0 overflow-visible"
+            ? "max-h-[94vh] sm:max-w-xl md:max-w-2xl overflow-hidden"
+            : "sm:max-w-md md:max-w-lg h-auto min-h-0 overflow-visible"
             }`}
         >
           {/* ── FORM STATE: iframe with scroll ── */}
