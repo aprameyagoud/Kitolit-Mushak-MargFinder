@@ -820,11 +820,6 @@ export function BookButton({
                   <DialogDescription className="text-xs sm:text-sm font-medium text-[#6E6050]">
                     Live guided online session • Activity material delivered to your home • Ages 6+
                   </DialogDescription>
-                  <div className="pt-2">
-                    <p className="text-sm sm:text-base font-semibold text-[color:var(--brand-red)]">
-                      Workshop price ₹1,500 + ₹199 delivery + applicable GST. Final checkout amount: ₹2,000.
-                    </p>
-                  </div>
                 </DialogHeader>
 
                 <div className="flex flex-col md:flex-row gap-6 md:gap-8">
