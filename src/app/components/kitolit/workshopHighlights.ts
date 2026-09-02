@@ -4,6 +4,6 @@ import type { FeatureChip } from "./FeatureChips";
 export const workshopHighlights: FeatureChip[] = [
   { icon: Video, label: "Online Live" },
   { icon: Baby, label: "Ages 6+" },
-  { icon: Truck, label: "Free Material Delivery" },
+  { icon: Truck, label: "Material Delivery" },
   { icon: Sparkles, label: "Beginner Friendly" },
 ];

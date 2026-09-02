@@ -5,7 +5,7 @@ import { SectionHeading, Mandala } from "./decor";
 
 const includes = [
   "Live guided online workshop session",
-  "Free activity material delivered to your home",
+  "Activity material delivered to your home",
   "Handcrafted Eco Tech Ganesha build",
   "Interactive Magical MushakBot build",
   "Beginner friendly for ages 6+",
@@ -17,7 +17,7 @@ export function Pricing() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(90%_80%_at_50%_0%,rgba(244,180,0,0.18),transparent_60%)]" />
       <Mandala spin className="pointer-events-none absolute -right-28 top-10 w-[420px] text-[color:var(--festive-orange)] opacity-[0.08]" />
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeading eyebrow="Simple Pricing" title={<>One price. Everything included.</>} subtitle="No hidden fees. Free shipping. Just one joyful making day for your child." />
+        <SectionHeading eyebrow="Simple Pricing" title={<>One price. Everything included.</>} subtitle="Workshop + delivery + GST — all included. Just one joyful making day for your child." />
 
         <motion.div
           initial={{ opacity: 0, y: 26 }}
@@ -48,7 +48,7 @@ export function Pricing() {
               </span>
             </div>
             <div className="mt-2 sm:mt-3 flex flex-col items-start gap-1.5">
-              <p className="text-sm sm:text-base font-semibold text-[color:var(--festive-orange)]">per child • free material + free delivery</p>
+              <p className="text-sm sm:text-base font-semibold text-[color:var(--festive-orange)]">per child • material + delivery included</p>
               <div className="flex items-center gap-1.5 rounded-full bg-[color:var(--festive-gold)]/20 px-3 py-1 border border-[color:var(--festive-gold)]/50 shadow-sm mt-1">
                 <span className="animate-pulse size-2 rounded-full bg-[color:var(--brand-red)]"></span>
                 <span className="text-xs font-bold text-[color:var(--brand-red)] tracking-wider uppercase">

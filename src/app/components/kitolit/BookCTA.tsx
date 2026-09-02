@@ -300,7 +300,7 @@ function BookingSuccess({
         Payment successful and spot reserved. Your child&apos;s creative journey begins soon!
       </p>
 
-      {/* Mock booking details */}
+      {/* Booking & payment details */}
       <div className="mx-auto mt-4 max-w-sm rounded-xl border border-[#E7D6C1] bg-white/80 p-3.5 text-left shadow-2xs backdrop-blur-xs">
         <div className="space-y-2 text-xs sm:text-sm">
           <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
@@ -310,7 +310,19 @@ function BookingSuccess({
             </span>
           </div>
           <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
-            <span className="font-medium text-[#7E6E5E]">Amount Paid</span>
+            <span className="font-medium text-[#7E6E5E]">Workshop</span>
+            <span className="font-medium text-[#23201C]">₹1,500</span>
+          </div>
+          <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
+            <span className="font-medium text-[#7E6E5E]">Delivery</span>
+            <span className="font-medium text-[#23201C]">₹199</span>
+          </div>
+          <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
+            <span className="font-medium text-[#7E6E5E]">GST (18%)</span>
+            <span className="font-medium text-[#23201C]">Included</span>
+          </div>
+          <div className="flex items-center justify-between border-b border-[#F0E5D5] pb-1.5">
+            <span className="font-semibold text-[#23201C]">Amount Paid</span>
             <span className="font-bold text-emerald-700">
               ₹{paymentData.amount / 100}
             </span>
@@ -326,6 +338,9 @@ function BookingSuccess({
             <span className="font-bold text-[#23201C]">3–5 business days</span>
           </div>
         </div>
+        <p className="mt-2 text-[10px] text-[#8A7D6C] text-center">
+          Final checkout amount rounded to ₹2,000.
+        </p>
       </div>
 
       <p className="mx-auto mt-3 max-w-xs text-[11px] text-[#8A7D6C]">
@@ -728,8 +743,8 @@ export function BookButton({
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-festive-gold/25 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-[color:var(--festive-orange)]">
                       🪔 Hands-on Maker Series
                     </span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
-                      Free Delivery
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800">
+                      Delivery ₹199
                     </span>
                   </div>
                   <DialogTitle
@@ -740,7 +755,7 @@ export function BookButton({
                     BOOK YOUR GANESHA WORKSHOP
                   </DialogTitle>
                   <DialogDescription className="text-xs sm:text-sm font-medium text-[#6E6050]">
-                    Live guided online session • Activity material delivered free to your home • Ages 6+
+                    Live guided online session • Activity material delivered to your home • Ages 6+
                   </DialogDescription>
                 </DialogHeader>
 
@@ -778,7 +793,7 @@ export function BookButton({
                     paymentData || {
                       paymentId: "",
                       orderId: "",
-                      amount: 150000,
+                      amount: 200000,
                     }
                   }
                   onClose={() => {

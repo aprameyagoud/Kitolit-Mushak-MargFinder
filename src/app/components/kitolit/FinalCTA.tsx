@@ -19,7 +19,7 @@ export function FinalCTA() {
           Give your child a <br className="hidden sm:block" /> maker's Ganesh Chaturthi
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg sm:text-xl text-white/90 font-medium sm:mt-6 px-2">
-          Book the live workshop today! The free activity material ships right to your home, and the memories will last far longer.
+          Book the live workshop today! The activity material ships right to your home, and the memories will last far longer.
         </p>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:mt-10 sm:gap-6 w-full">

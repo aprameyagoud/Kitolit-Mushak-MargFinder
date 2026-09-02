@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "Do we need to buy anything else?",
-    a: "No. All essential parts — Eco Tech Ganesha pieces, Magical MushakBot companion parts, and craft assembly accessories — arrive free in the activity material box before class.",
+    a: "No. All essential parts — Eco Tech Ganesha pieces, Magical MushakBot companion parts, and craft assembly accessories — arrive in the activity material box before class. Delivery is ₹199, included in the final checkout amount.",
   },
   {
     q: "Is any prior building or technical experience needed?",
@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "When will the material arrive?",
-    a: "We ship the free activity material to your home a few days before your chosen batch so you're ready on the day.",
+    a: "We ship the activity material to your home a few days before your chosen batch so you're ready on the day. Delivery charges (₹199) are included in the final checkout amount.",
   },
   {
     q: "What if my child needs help during the session?",
