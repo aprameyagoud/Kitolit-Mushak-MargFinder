@@ -33,7 +33,7 @@ export function Pricing() {
 
             <div className="absolute right-4 top-4 sm:right-6 sm:top-6 flex flex-col items-end gap-1.5">
               <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-3 py-1 sm:px-4 sm:py-1.5 font-bold text-xs sm:text-sm text-white shadow-sm">
-                EARLY BIRD: SAVE ₹1500
+                ⚡ FLASH SALE • LIMITED TIME
               </span>
             </div>
             <p className="font-[family:var(--font-display)] text-base sm:text-lg font-medium text-[color:var(--muted-foreground)] mt-6 sm:mt-2">Eco Tech Ganesha Workshop</p>
@@ -49,12 +49,7 @@ export function Pricing() {
             </div>
             <div className="mt-2 sm:mt-3 flex flex-col items-start gap-1.5">
               <p className="text-sm sm:text-base font-semibold text-[color:var(--festive-orange)]">per child • material + delivery included</p>
-              <div className="flex items-center gap-1.5 rounded-full bg-[color:var(--festive-gold)]/20 px-3 py-1 border border-[color:var(--festive-gold)]/50 shadow-sm mt-1">
-                <span className="animate-pulse size-2 rounded-full bg-[color:var(--brand-red)]"></span>
-                <span className="text-xs font-bold text-[color:var(--brand-red)] tracking-wider uppercase">
-                  Book before September 1
-                </span>
-              </div>
+
             </div>
 
             <ul className="mt-8 sm:mt-10 space-y-3 sm:space-y-4">

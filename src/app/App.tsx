@@ -110,7 +110,7 @@ function LandingPage() {
               </span>
             </div>
             <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2 py-0.5 text-[9px] font-bold text-white shadow-sm tracking-wider">
-              EARLY BIRD: SAVE ₹1500
+              ⚡ FLASH SALE • LIMITED TIME
             </span>
           </div>
           <BookButton className="w-full min-h-[44px] py-2.5 text-[15px] shadow-md" />

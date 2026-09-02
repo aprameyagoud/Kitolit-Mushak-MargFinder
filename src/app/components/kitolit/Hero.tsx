@@ -63,15 +63,10 @@ export function Hero({ heroCTARef }: { heroCTARef?: RefObject<HTMLDivElement | n
                     ₹1500
                   </span>
                   <span className="rounded-full bg-gradient-to-r from-[color:var(--festive-orange)] to-[color:var(--brand-red)] px-2.5 py-0.5 text-xs font-bold text-white shadow-sm ml-1">
-                    EARLY BIRD: SAVE ₹1500
+                    ⚡ FLASH SALE • LIMITED TIME
                   </span>
                 </div>
-                <div className="mt-1.5 flex items-center gap-1.5 rounded-full bg-[color:var(--festive-gold)]/20 px-3 py-1 border border-[color:var(--festive-gold)]/50 shadow-sm">
-                  <span className="animate-pulse size-2 rounded-full bg-[color:var(--brand-red)]"></span>
-                  <span className="text-[11px] font-bold text-[color:var(--brand-red)] tracking-wider uppercase">
-                    Book before September 1
-                  </span>
-                </div>
+
               </div>
             </div>
 
