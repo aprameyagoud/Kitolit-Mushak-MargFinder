@@ -555,67 +555,28 @@ export function BookButton({
       window.removeEventListener("message", handleMessage);
     };
   }, [bookingState]);
+
+  // Trigger payment when state transitions to "preparing" and customer data is available
+  useEffect(() => {
+    if (bookingState === "preparing" && customerData) {
+      startPayment();
+    }
+  }, [bookingState, customerData]);
+
   const startPayment = async () => {
     if (!customerData || paymentStartedRef.current) {
       return;
     }
-    useEffect(() => {
-      if (bookingState === "preparing" && customerData) {
-        startPayment();
-      }
-    }, [bookingState, customerData]);
 
     paymentStartedRef.current = true;
     setBookingState("preparing");
 
-
     try {
       const wordpressOrigin = new URL(WORDPRESS_FORM_URL).origin;
 
-      // Load Razorpay Checkout if it is not already loaded.
+      // Razorpay Checkout is loaded globally from index.html.
       if (!window.Razorpay) {
-        await new Promise<void>((resolve, reject) => {
-          const existingScript = document.querySelector(
-            'script[src="https://checkout.razorpay.com/v1/checkout.js"]'
-          ) as HTMLScriptElement | null;
-
-          if (existingScript) {
-            const checkRazorpay = () => {
-              if (window.Razorpay) {
-                resolve();
-              } else {
-                setTimeout(checkRazorpay, 100);
-              }
-            };
-
-            checkRazorpay();
-
-            existingScript.addEventListener("error", () => {
-              reject(new Error("Unable to load Razorpay Checkout."));
-            });
-
-            return;
-          }
-
-          const script = document.createElement("script");
-
-          script.src = "https://checkout.razorpay.com/v1/checkout.js";
-          script.async = true;
-
-          script.onload = () => {
-            if (window.Razorpay) {
-              resolve();
-            } else {
-              reject(new Error("Razorpay Checkout failed to initialize."));
-            }
-          };
-
-          script.onerror = () => {
-            reject(new Error("Unable to load Razorpay Checkout."));
-          };
-
-          document.body.appendChild(script);
-        });
+        throw new Error("Razorpay Checkout failed to load.");
       }
 
       // Ask WordPress to create the Razorpay order.
