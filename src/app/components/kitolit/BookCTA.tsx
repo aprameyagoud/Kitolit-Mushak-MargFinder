@@ -505,8 +505,9 @@ export function BookButton({
             typeof customer.email !== "string" ||
             typeof customer.phone !== "string"
           ) {
-            console.error("Kitolit: Invalid customer data received.");
-            setBookingState("failed");
+            console.warn(
+              "Kitolit: FORM_SUCCESS received without customer data. Waiting for customer data."
+            );
             return;
           }
 
